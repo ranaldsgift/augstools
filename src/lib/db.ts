@@ -3,4 +3,12 @@ import { env } from '$env/dynamic/public'
 
 console.log(process.env.PUBLIC_SUPABASE_URL);
 
-export const supabaseClient = createClient(env.PUBLIC_SUPABASE_URL, env.PUBLIC_SUPABASE_ANON_KEY);
+let SUPABASE_URL = env.PUBLIC_SUPABASE_URL;
+let SUPABASE_KEY = env.PUBLIC_SUPABASE_ANON_KEY;
+
+if (process.env.NODE_ENV === 'production') {
+    SUPABASE_URL = process.env.PUBLIC_SUPABASE_URL;
+    SUPABASE_KEY = process.env.PUBLIC_SUPABASE_ANON_KEY;
+}
+
+export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
