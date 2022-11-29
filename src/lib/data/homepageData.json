@@ -1,0 +1,40 @@
+[
+    {
+        "title": "Homebrew",
+        "icon": "material-symbols:web",
+        "url": "/homebrew",
+        "description": "Browse the largest collection of AUGS homebrews created by community members."
+    },
+    {
+        "title": "Create",
+        "icon": "mdi:create",
+        "url": "/create",
+        "description": "Create your own AUGS content with this tool. Start homebrewing right now!"
+    },
+    {
+        "title": "Co-Op Tool",
+        "icon": "material-symbols:group",
+        "url": "/coop",
+        "description": "Reduce your table clutter, manage the initiative deck and play with the AUGS Event Deck system."
+    },
+    {
+        "title": "AUGS DB",
+        "icon": "material-symbols:insert-chart",
+        "url": "/db",
+        "description": "The AUGS Database gives you a full overview of all things AUGS."
+    },
+    {
+        "title": "Facebook",
+        "icon": "mdi:facebook",
+        "url": "https://www.facebook.com/groups/TMNTShadowsOfThePast",
+        "description": "Check out the AUGS Facebook community to connect with other fans and find the latest news.",
+        "linkTarget": "_blank"
+    },
+    {
+        "title": "Discord",
+        "icon": "mdi:discord",
+        "url": "https://discord.gg/nU6wSXU3bn",
+        "description": "Join the AUGS Community Discord!",
+        "linkTarget": "_blank"
+    }
+]

@@ -1,0 +1,52 @@
+[
+    { 
+        "name": "Heroes",
+        "description": "Full list of homebrew hero character sheets.",
+        "icon": ""
+    },
+    {
+        "name": "Villains",
+        "description": "Full list of homebrew villain character sheets.",
+        "icon": ""
+    },
+    {
+        "name": "Maps",
+        "description": "Full list of homebrew map tiles.",
+        "icon": ""
+    },
+    {
+        "name": "Tokens",
+        "description": "Full list of homebrew tokens including terrain and other tokens.",
+        "icon": ""
+    },
+    {
+        "name": "Scenarios",
+        "description": "Full list of homebrew scenarios for competitve or cooperative play.",
+        "icon": ""
+    },
+    {
+        "name": "Event Decks",
+        "description": "Full list of homebrew event decks for cooperative play.",
+        "icon": ""
+    },
+    {
+        "name": "Skills",
+        "description": "Full list of homebrew hero skill cards.",
+        "icon": ""
+    },
+    {
+        "name": "Villain Decks",
+        "description": "Full list of homebrew hero skill cards.",
+        "icon": ""
+    },
+    {
+        "name": "Gadgets",
+        "description": "Full list of homebrew gadget cards for heroes.",
+        "icon": ""
+    },
+    {
+        "name": "Allies",
+        "description": "Full list of homebrew ally cards including normal and evil allies.",
+        "icon": ""
+    }
+]
