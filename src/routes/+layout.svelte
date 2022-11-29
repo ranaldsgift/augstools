@@ -5,6 +5,8 @@
     import "../app.css";
   import { invalidate } from '$app/navigation'
   import { onMount } from 'svelte'
+  import { webVitals } from '$lib/vitals';
+  import { browser } from '$app/environment';
 
     import { supabaseClient } from '$lib/db'
     import {page} from '$app/stores';
@@ -17,6 +19,15 @@
     const storeDrawer: Writable<boolean> = writable(false);
 
     let email = '';
+    
+  let analyticsId = import.meta.env.VERCEL_ANALYTICS_ID;
+  $: if (browser && analyticsId) {
+    webVitals({
+      path: $page.url.pathname,
+      params: $page.params,
+      analyticsId
+    })
+  }
 
 onMount(() => {
   const {
