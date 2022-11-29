@@ -38,7 +38,6 @@ onMount(() => {
             drawerClose();
         } catch (error) {
             console.log(error);
-
         }
     }
 
