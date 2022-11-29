@@ -10,7 +10,11 @@ const config = {
 	  }),
 
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
+		csp:{
+			mode:"hash",
+			directives:{"script-src":["self", "vitals.vercel-insights.com"]},
+		}
 	}
 };
 
