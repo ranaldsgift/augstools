@@ -7,6 +7,7 @@
   import { onMount } from 'svelte'
   import { webVitals } from '$lib/vitals';
   import { browser } from '$app/environment';
+import { inject } from '@vercel/analytics';
 
     import { supabaseClient } from '$lib/db'
     import {page} from '$app/stores';
@@ -28,6 +29,8 @@
       analyticsId
     })
   }
+
+  inject();
 
 onMount(() => {
   const {
