@@ -6,7 +6,7 @@
 
 <ul class="grid grid-cols-2 m-auto gap-4 w-80">
     {#each homebrewTypes as homebrewType}
-    <a href="/homebrew/{homebrewType.name}/" class="grid">
+    <a href="/homebrew/{homebrewType.name.toLowerCase()}/" class="grid">
         <ComicCard title={homebrewType.name} description={homebrewType.description} icon=""></ComicCard>
     </a>
     {/each}
