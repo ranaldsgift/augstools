@@ -16,23 +16,28 @@
     }
     
     import backgroundUrl from '../images/overlays/zoom.jpg'
+    import ComicCard from '../components/ComicCard.svelte';
 </script>
 
 <div class="grid grid-cols-2 gap-5 max-w-5xl m-auto py-8 px-8">
 
     {#each homepageData as homepageItem}
-        <a href="{homepageItem.url}" class="card comic-card comic-text" target="{homepageItem.linkTarget}" style="background-image: url('{backgroundUrl}')" rel="noreferrer">
-            <!-- <div class="comic-background" style="background-image: url('{backgroundUrl}')"></div> -->
-            <header class="card-header">
+
+        <a href="{homepageItem.url}" target="{homepageItem.linkTarget}" rel="noreferrer">
+
+            <ComicCard title={homepageItem.title} icon={homepageItem.icon} description={homepageItem.description}></ComicCard>
+
+
+
+<!--             <header class="card-header">
                 <h1 class="font-bold text-lg pb-2 text-tertiary-600">{homepageItem.title}</h1>
             </header>
             <div class="card-body">
                 <iconify-icon icon="{homepageItem.icon}"></iconify-icon>
-                <!-- <IconButton class="material-icons text-8xl">{homepageItem.icon}</IconButton> -->
             </div>
             <footer class="card-footer">
                 <p class="text-gray-700">{homepageItem.description}</p>
-            </footer>
+            </footer> -->
         </a>
     {/each}
 

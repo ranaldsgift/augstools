@@ -64,6 +64,8 @@ onMount(() => {
     const drawerClose: any = () => { storeDrawer.set(false) };
 </script>
 
+<svelte:head><title>AUGS Tools</title></svelte:head>
+
 <Drawer open={storeDrawer} position="left">    
     <form on:submit|preventDefault={handleLogin} class="grid grid-flow-row m-auto max-w-xl gap-5 mt-10">
         <p class="text-center italic">Enter your e-mail to sign in with a Magic Link.</p><p class="text-center italic">You will be sent a link to authenticate yourself.</p>
