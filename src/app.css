@@ -16,8 +16,8 @@ a:visited {
 
 @font-face {
     font-family: 'bangersregular';
-    src: url('../../fonts/bangers-regular-webfont.woff2') format('woff2'),
-         url('../../fonts/bangers-regular-webfont.woff') format('woff');
+    src: url('./fonts/bangers-regular-webfont.woff2') format('woff2'),
+         url('./fonts/bangers-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
@@ -25,8 +25,8 @@ a:visited {
 
 @font-face {
     font-family: 'smackattack_bbregular';
-    src: url('../../fonts/smackattackbb_reg-webfont.woff2') format('woff2'),
-         url('../../fonts/smackattackbb_reg-webfont.woff') format('woff');
+    src: url('./fonts/smackattackbb_reg-webfont.woff2') format('woff2'),
+         url('./fonts/smackattackbb_reg-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
