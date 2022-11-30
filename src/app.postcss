@@ -18,8 +18,8 @@ a:visited {
     transform: skew(-1deg);
     position: relative;
     overflow: hidden;
-    min-height: 120px;
     background-size: cover;
+    display: grid;
 }
 .comic-text {
     font-family: "Comic Sans MS", "Comic Sans", cursive;
@@ -38,9 +38,9 @@ a:visited {
 
 .comic-card .card-footer {
     border: 3px solid black;
-    position: absolute;
+    position: relative;
     bottom: -3px;
-    right: -22px;
+    left: 110px;
     transform: skew(-15deg);
     max-width: 80%;
     padding-right: 40px;
@@ -51,11 +51,9 @@ a:visited {
     align-content: center;
 }
 .comic-card .card-body {
-    height: 150px;
     justify-content: center;
     align-content: center;
     display: grid;
-    margin-bottom: 96px;
     padding: 0;
 }
 .comic-card:nth-child(4n+1) {
@@ -91,9 +89,10 @@ a:visited {
 iconify-icon {
     font-size: 1.5rem;
 }
-.card-footer p {
+.card-footer p, .card-header h1 {
     transform: skew(15deg);
 }
 .card-body iconify-icon {
     font-size: 6rem;
+    padding: 1.5rem 0;
 }

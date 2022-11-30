@@ -3,6 +3,7 @@
     export let title = '';
     export let description = '';
     export let icon = '';
+    export let body = '';
     export let useBackground = true;
 </script>
 
@@ -15,11 +16,12 @@
             <h1 class="font-bold text-lg pb-2 text-tertiary-600">{title}</h1>
         </header>
         {/if}
-        {#if icon.length > 0}
         <div class="card-body">
+            {#if icon.length > 0}
             <iconify-icon icon="{icon}"></iconify-icon>
+            {/if}
+            <p class="text-gray-700">{body}</p>
         </div>
-        {/if}
         {#if description.length > 0}
         <footer class="card-footer">
             <p class="text-gray-700">{description}</p>
