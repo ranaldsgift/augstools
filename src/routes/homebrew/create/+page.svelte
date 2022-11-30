@@ -6,7 +6,7 @@
 <ul>
     {#each homebrewTypes as homebrewType}
     <li>
-        <a href='/homebrew/{homebrewType.name}/create'>{homebrewType.name}</a>
+        <a href='/homebrew/{homebrewType.name.toLowerCase()}/create'>{homebrewType.name}</a>
     </li>
     {/each}
 </ul>
