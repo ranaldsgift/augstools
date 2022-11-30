@@ -1,3 +1,5 @@
+
+
 html, body { @apply h-full overflow-hidden; }
 
 html {
@@ -55,24 +57,27 @@ a:visited {
     display: grid;
     padding: 0;
 }
-.comic-card:nth-child(4n+1) {
+a:nth-child(4n+1) .comic-card {
     box-shadow: inset #ffeb3bd9 1px 1px 100px 100px;
 }
 
-.comic-card:nth-child(4n+2) {
+a:nth-child(4n+2) .comic-card {
     box-shadow: inset #00bfffd9 1px 1px 100px 100px;
 }
 
-.comic-card:nth-child(4n+3) {
+a:nth-child(4n+3) .comic-card {
     box-shadow: inset #9acd32d9 1px 1px 100px 100px;
 }
 
-.comic-card:nth-child(4n+4) {
+a:nth-child(4n+4) .comic-card {
     box-shadow: inset #ff6347d9 1px 1px 100px 100px;
 }
 
 .app-bar:not(li) {
     color: rgb(var(--color-accent-300));
+}
+#page-content {
+    padding: 2rem;
 }
 #page-content>* {
     width: 1200px;
@@ -94,4 +99,25 @@ iconify-icon {
 .card-body iconify-icon {
     font-size: 6rem;
     padding: 1.5rem 0;
+}
+.comic-list-nav {
+    color: #fff;
+}
+.comic-list-nav a {
+    width: 80%;
+    border: 3px solid black;
+    border-radius: 0;
+    background-size: 121%;
+    background-repeat: no-repeat;
+    box-shadow: rgb(129 140 248 / 86%) 1px 1px 1px 38px inset;
+    background-position: -13px -123px;
+    text-align: left;
+    justify-content: start;
+    color: #00000000;
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-family: 'smackattack_bbregular'
+}
+.comic-list-nav a:nth-child(2n+2) {
+    justify-self: end;
 }

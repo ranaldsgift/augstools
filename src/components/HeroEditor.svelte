@@ -23,24 +23,6 @@
     background: var(--background-color);
 }
 
-@font-face {
-    font-family: 'bangersregular';
-    src: url('../fonts/bangers-regular-webfont.woff2') format('woff2'),
-         url('../fonts/bangers-regular-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'smackattack_bbregular';
-    src: url('../fonts/smackattackbb_reg-webfont.woff2') format('woff2'),
-         url('../fonts/smackattackbb_reg-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
 .hero-ability {
     position: absolute;
     top: 145px;
@@ -52,7 +34,7 @@
 
 span {
     border: none;
-    font-family: bangersregular;
+    font-family: 'bangersregular';
     font-size: 32px;
     text-align: center;
     background: none;
@@ -307,7 +289,6 @@ h2 {
 
 .template-options label, .image-settings label {
     align-self: end;
-    font-family: 'bangersregular';
     padding: 5px;
     background: #4caf50;
     height: calc(100% - 10px);
