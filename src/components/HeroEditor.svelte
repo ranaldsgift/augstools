@@ -1,6 +1,6 @@
 <style>
     .hero-overlay {
-    background-image: url('../images/homebrew/hero_overlay.png');
+    background-image: url('https://raw.githubusercontent.com/ranaldsgift/tmntaugs/main/images/homebrew/hero_overlay.png');
     gap: 10px;
 }
 .homebrew-template-container.hero-template {
@@ -185,61 +185,61 @@ h2 {
 }
 
 .icon[data-icon='melee'][data-type='tmnt'][data-inverted='false'] {
-    background-image: url('../images/homebrew/tmnt/melee.png');
+    background-image: url('https://raw.githubusercontent.com/ranaldsgift/tmntaugs/main/images/homebrew/tmnt/melee.png');
 }
 .icon[data-icon='double-melee'][data-type='tmnt'][data-inverted='false'] {
-    background-image: url('../images/homebrew/tmnt/double_melee.png');
+    background-image: url('https://raw.githubusercontent.com/ranaldsgift/tmntaugs/main/images/homebrew/tmnt/double_melee.png');
 }
 .icon[data-icon='range'][data-type='tmnt'][data-inverted='false'] {
-    background-image: url('../images/homebrew/tmnt/range.png');
+    background-image: url('https://raw.githubusercontent.com/ranaldsgift/tmntaugs/main/images/homebrew/tmnt/range.png');
 }
 .icon[data-icon='double-range'][data-type='tmnt'][data-inverted='false'] {
-    background-image: url('../images/homebrew/tmnt/double_range.png');
+    background-image: url('https://raw.githubusercontent.com/ranaldsgift/tmntaugs/main/images/homebrew/tmnt/double_range.png');
 }
 .icon[data-icon='move'][data-type='tmnt'][data-inverted='false'] {
-    background-image: url('../images/homebrew/tmnt/move.png');
+    background-image: url('https://raw.githubusercontent.com/ranaldsgift/tmntaugs/main/images/homebrew/tmnt/move.png');
 }
 .icon[data-icon='double-move'][data-type='tmnt'][data-inverted='false'] {
-    background-image: url('../images/homebrew/tmnt/double_move.png');
+    background-image: url('https://raw.githubusercontent.com/ranaldsgift/tmntaugs/main/images/homebrew/tmnt/double_move.png');
 }
 .icon[data-icon='block'][data-type='tmnt'][data-inverted='false'] {
-    background-image: url('../images/homebrew/tmnt/block.png');
+    background-image: url('https://raw.githubusercontent.com/ranaldsgift/tmntaugs/main/images/homebrew/tmnt/block.png');
 }
 .icon[data-icon='block-melee'][data-type='tmnt'][data-inverted='false'] {
-    background-image: url('../images/homebrew/tmnt/block_melee.png');
+    background-image: url('https://raw.githubusercontent.com/ranaldsgift/tmntaugs/main/images/homebrew/tmnt/block_melee.png');
 }
 .icon[data-icon='block-range'][data-type='tmnt'][data-inverted='false'] {
-    background-image: url('../images/homebrew/tmnt/block_range.png');
+    background-image: url('https://raw.githubusercontent.com/ranaldsgift/tmntaugs/main/images/homebrew/tmnt/block_range.png');
 }
 .icon[data-icon='block-move'][data-type='tmnt'][data-inverted='false'] {
-    background-image: url('../images/homebrew/tmnt/block_move.png');
+    background-image: url('https://raw.githubusercontent.com/ranaldsgift/tmntaugs/main/images/homebrew/tmnt/block_move.png');
 }
 .icon[data-icon='focus'][data-type='tmnt'][data-inverted='false'] {
-    background-image: url('../images/homebrew/tmnt/focus.png');
+    background-image: url('https://raw.githubusercontent.com/ranaldsgift/tmntaugs/main/images/homebrew/tmnt/focus.png');
 }
 .icon[data-icon='chi'][data-type='tmnt'][data-inverted='false'] {
-    background-image: url('../images/homebrew/tmnt/chi.png');
+    background-image: url('https://raw.githubusercontent.com/ranaldsgift/tmntaugs/main/images/homebrew/tmnt/chi.png');
 }
 .icon[data-icon='wild'] {
-    background-image: url('../images/homebrew/wild.png');
+    background-image: url('https://raw.githubusercontent.com/ranaldsgift/tmntaugs/main/images/homebrew/wild.png');
 }
 .icon[data-icon='one-time-use'] {
-    background-image: url('../images/homebrew/one_time_use.png');
+    background-image: url('https://raw.githubusercontent.com/ranaldsgift/tmntaugs/main/images/homebrew/one_time_use.png');
 }
 .icon[data-icon='persistent'] {
-    background-image: url('../images/homebrew/persistent.png');
+    background-image: url('https://raw.githubusercontent.com/ranaldsgift/tmntaugs/main/images/homebrew/persistent.png');
 }
 .icon[data-icon='health'], .icon[data-icon='health'][data-type='tmnt'][data-inverted='false'] {
-    background-image: url('../images/homebrew/tmnt/health.png');
+    background-image: url('https://raw.githubusercontent.com/ranaldsgift/tmntaugs/main/images/homebrew/tmnt/health.png');
 }
 .icon[data-icon='arrow_up'] {
-    background-image: url('../images/homebrew/arrow_up.png');
+    background-image: url('https://raw.githubusercontent.com/ranaldsgift/tmntaugs/main/images/homebrew/arrow_up.png');
 }
 .icon[data-icon='arrow_down'] {
-    background-image: url('../images/homebrew/arrow_down.png');
+    background-image: url('https://raw.githubusercontent.com/ranaldsgift/tmntaugs/main/images/homebrew/arrow_down.png');
 }
 .icon[data-icon='skill'] {
-    background-image: url('../images/homebrew/skill.png');
+    background-image: url('https://raw.githubusercontent.com/ranaldsgift/tmntaugs/main/images/homebrew/skill.png');
 }
 
 .template-options {
