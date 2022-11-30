@@ -8,7 +8,7 @@
     {
         "title": "Create",
         "icon": "mdi:create",
-        "url": "/create",
+        "url": "/homebrew/create",
         "description": "Create your own AUGS content with this tool. Start homebrewing right now!"
     },
     {
