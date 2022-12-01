@@ -1,12 +1,17 @@
-<script>
+<script lang="ts">
     import homebrewTypes from '$lib/data/homebrewTypeData.json'
+    import NavList from '../../../components/NavList.svelte';
+
+    let navItems: {name: string, url: string }[] = [];
+
+    homebrewTypes.forEach(homebrewType => {
+        navItems.push({
+            name: homebrewType.name,
+            url: `/homebrew/${homebrewType.name.toLowerCase()}/create`
+        })
+    });
+
 </script>
 
 <h1>What type of Homebrew would you like to create?</h1>
-<ul>
-    {#each homebrewTypes as homebrewType}
-    <li>
-        <a href='/homebrew/{homebrewType.name.toLowerCase()}/create'>{homebrewType.name}</a>
-    </li>
-    {/each}
-</ul>
+<NavList listItems={navItems}></NavList>

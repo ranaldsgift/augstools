@@ -1,9 +1,15 @@
 <script lang="ts">
     import homebrewTypes from '$lib/data/homebrewTypeData.json'
-    import ComicCard from '../../components/ComicCard.svelte';
-    import { writable, type Writable } from 'svelte/store';
+    import NavList from '../../components/NavList.svelte';
 
-    let backgroundUrl = 'https://i.imgur.com/M5Mt5jU.jpg';
+    let navItems: {name: string, url: string }[] = [];
+
+    homebrewTypes.forEach(homebrewType => {
+        navItems.push({
+            name: homebrewType.name,
+            url: `/homebrew/${homebrewType.name.toLowerCase()}`
+        })
+    });
 </script>
 
 <style>
@@ -42,12 +48,4 @@
     }
 </style>
 
-<div class="m-auto">
-    <nav class="grid m-auto gap-4 px-8 max-w-3xl comic-list-nav">
-        {#each homebrewTypes as homebrewType}
-        <a href="/homebrew/{homebrewType.name.toLowerCase()}/" class="grid btn" data-title={homebrewType.name}>
-            {homebrewType.name}
-        </a>
-        {/each}
-    </nav>
-</div>
+<NavList listItems={navItems}></NavList>
