@@ -3,31 +3,36 @@
         "title": "Homebrew",
         "icon": "material-symbols:web",
         "url": "/homebrew",
-        "description": "Browse the largest collection of AUGS homebrews created by community members."
+        "description": "Browse the largest collection of AUGS homebrews created by community members.",
+        "shadowColor": "#ffeb3bd9"
     },
     {
         "title": "Create",
         "icon": "mdi:create",
         "url": "/homebrew/create",
-        "description": "Create your own AUGS content with this tool. Start homebrewing right now!"
+        "description": "Create your own AUGS content with this tool. Start homebrewing right now!",
+        "shadowColor": "#00bfffd9"
     },
     {
         "title": "Co-Op Tool",
         "icon": "material-symbols:group",
         "url": "/coop",
-        "description": "Reduce your table clutter, manage the initiative deck and play with the AUGS Event Deck system."
+        "description": "Reduce your table clutter, manage the initiative deck and play with the AUGS Event Deck system.",
+        "shadowColor": "#9acd32d9"
     },
     {
         "title": "AUGS DB",
         "icon": "material-symbols:insert-chart",
         "url": "/db",
-        "description": "The AUGS Database gives you a full overview of all things AUGS."
+        "description": "The AUGS Database gives you a full overview of all things AUGS.",
+        "shadowColor": "#ff6347d9"
     },
     {
         "title": "Facebook",
         "icon": "mdi:facebook",
         "url": "https://www.facebook.com/groups/TMNTShadowsOfThePast",
         "description": "Check out the AUGS Facebook community to connect with other fans and find the latest news.",
+        "shadowColor": "#ffeb3bd9",
         "linkTarget": "_blank"
     },
     {
@@ -35,6 +40,7 @@
         "icon": "mdi:discord",
         "url": "https://discord.gg/nU6wSXU3bn",
         "description": "Join the AUGS Community Discord!",
+        "shadowColor": "#00bfffd9",
         "linkTarget": "_blank"
     }
 ]

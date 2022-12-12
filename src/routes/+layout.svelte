@@ -3,63 +3,55 @@
     import '@brainandbones/skeleton/styles/all.css';
     import '../app.postcss';
     import "../app.css";
-  import { invalidate } from '$app/navigation'
-  import { onMount } from 'svelte'
-  import { webVitals } from '$lib/vitals';
-  import { browser } from '$app/environment';
-import { inject } from '@vercel/analytics';
-
+    import { onMount } from 'svelte'
+    import { invalidate } from '$app/navigation'
     import { supabaseClient } from '$lib/db'
-    import {page} from '$app/stores';
-
+    import { page } from '$app/stores';
     import { AppShell, AppBar, Divider } from '@brainandbones/skeleton';
     import { menu } from '@brainandbones/skeleton';
     import { Drawer } from '@brainandbones/skeleton';
-
-    import { writable, type Writable } from 'svelte/store';
-    const storeDrawer: Writable<boolean> = writable(false);
+    import { writable, type Writable } from 'svelte/store';    
+    import * as UserBusiness from '$lib/business/UserBusiness'
 
     let email = '';
-    
-  let analyticsId = import.meta.env.VERCEL_ANALYTICS_ID;
-  $: if (browser && analyticsId) {
-    webVitals({
-      path: $page.url.pathname,
-      params: $page.params,
-      analyticsId
-    })
-  }
 
-  inject();
+    onMount(() => {
+        const {
+            data: { subscription },
+        } = supabaseClient.auth.onAuthStateChange(() => {
+            invalidate('supabase:auth')
+        })
 
-onMount(() => {
-  const {
-    data: { subscription },
-  } = supabaseClient.auth.onAuthStateChange(() => {
-    invalidate('supabase:auth')
-  })
-
-  return () => {
-    subscription.unsubscribe()
-  }
-})
+        return () => {
+            subscription.unsubscribe()
+        }
+    });
 
     const handleLogin = async () => {
-        try {
+
+        const { error } = await UserBusiness.signIn(email);
+
+        if (error) {
+            console.log(error);
+            alert('An error occured, please try again. If problems persist, wait 10 minutes and try again.');
+            return;
+        }
+        
+        alert('Check your email for a magic link to login!');
+        drawerClose();
+        
+/*         try {
             const {error} = await supabaseClient.auth.signInWithOtp({ email });
             if (error) throw error
             alert('Check your email for a magic link to login!');
             drawerClose();
         } catch (error) {
             console.log(error);
-        }
+            alert('An error occured, please try again. If problems persist, wait 10 minutes and try again.');
+        } */
     }
 
-    const handleLogout = async () => {
-        await supabaseClient.auth.signOut();
-        window.location.reload();
-    }
-
+    const storeDrawer: Writable<boolean> = writable(false);
     const drawerOpen: any = () => { storeDrawer.set(true) };
     const drawerClose: any = () => { storeDrawer.set(false) };
 </script>
@@ -74,7 +66,6 @@ onMount(() => {
     </form>
 </Drawer>
 
-<!-- <TopNavigation></TopNavigation> -->
 <AppShell>
     <!-- Header -->
     <svelte:fragment slot="header">
@@ -101,12 +92,9 @@ onMount(() => {
                     <iconify-icon icon="mdi:github"></iconify-icon>
                 </a>
                 {#if $page.data.session}
-                    <a href="/user" class="material-icons">                    
+                    <a href="/user/{$page.data.session.user.id}" class="material-icons">                    
                         <iconify-icon icon="mdi:user"></iconify-icon>
                     </a>
-                    <button class="btn-icon" on:click={handleLogout} >
-                        <iconify-icon icon="mdi:logout"></iconify-icon>
-                    </button>
                 {:else}
                 <button class="btn-icon" on:click={drawerOpen}>
                     <iconify-icon icon="mdi:user"></iconify-icon>
@@ -119,6 +107,3 @@ onMount(() => {
     <!-- Page Content Slot -->
     <slot />
 </AppShell>
-<!-- <div class="max-w-screen-xl m-auto my-4">
-    <slot />
-</div> -->

@@ -3,12 +3,13 @@
 // and what to do when importing types
 declare namespace App {
 	interface Supabase {
-	  Database: import('./DatabaseDefinitions').Database;
+	  Database: import('./schema').Database;
 	  SchemaName: 'public';
 	}
 	// interface Locals {}
 	interface PageData {
     	session: import('@supabase/supabase-js').Session | null;
+		user?: import('$lib/interfaces/userModel').UserModel
 	}
 	// interface Error {}
 	// interface Platform {}

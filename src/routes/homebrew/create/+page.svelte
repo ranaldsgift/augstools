@@ -1,6 +1,6 @@
 <script lang="ts">
     import homebrewTypes from '$lib/data/homebrewTypeData.json'
-    import NavList from '../../../components/NavList.svelte';
+    import NavList from '$lib/components/ComicNavList.svelte';
 
     let navItems: {name: string, url: string }[] = [];
 

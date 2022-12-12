@@ -1,5 +1,5 @@
 <script>
-    import HeroEditor from '../../../../components/HeroEditor.svelte';
+    import HeroEditor from '$lib/components/HeroSheetEditor.svelte';
 
     /** @type {import('./$types').PageData} */
     export let data;
