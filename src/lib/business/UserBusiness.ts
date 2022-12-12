@@ -5,7 +5,11 @@ export let userModel: UserModel;
 
 export async function signIn(email: string) {
     try {
-        const { error } = await supabaseClient.auth.signInWithOtp({ email });
+        const { error } = await supabaseClient.auth.signInWithOtp({ email, 
+			options: {
+				emailRedirectTo: `${window.location.origin}/user/edit`
+			}
+        });
         if (error) throw error
         return { error: null };
     } catch (error) {
@@ -43,7 +47,7 @@ export async function updateUser(userModel: UserModel) {
     try {
         const { error } = await supabaseClient.from('user_profiles').upsert({ 
             id: userModel.id, 
-            user_name: userModel.user_name,
+            user_name: userModel.userName,
             avatar: userModel.avatar,
             discord: userModel.discord,
             date_modified: ((new Date()).toISOString())
