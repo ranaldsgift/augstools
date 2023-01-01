@@ -4,7 +4,7 @@ import type { TokensMapper } from "$lib/mappers/TokensMapper";
 import type { TypedSupabaseClient } from "@supabase/auth-helpers-sveltekit/dist/types";
 import { HomebrewsBaseRepository } from "./HomebrewsRepository";
 
-export class TokensRepository extends HomebrewsBaseRepository<TokenModel, TokenEntity> {
+export class TokensRepository extends HomebrewsBaseRepository<TokenModel, TokenEntity, TokenEntity> {
     constructor(
         supabaseClient: TypedSupabaseClient,
         mapper: TokensMapper

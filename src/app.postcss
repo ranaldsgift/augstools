@@ -164,6 +164,7 @@ input[type='color']::-moz-color-swatch {
     -webkit-text-stroke: 2px;
     -webkit-text-stroke-color: black;
     transform: perspective(100px) rotatey(-1deg);
+    margin-left: 20px;
 }
 .comic-form header {
     position: relative
@@ -174,10 +175,12 @@ input[type='color']::-moz-color-swatch {
     position: absolute;
     top: 0;
     height: 100%;
-    width: 90%;
+    width: 80%;
     border: 4px solid black;
     content: '';
     z-index: -1;
+    margin-left: 20px;
+
 }
 .comic-form header::after {
     background: rgba(var(--color-warning-600));
@@ -185,12 +188,14 @@ input[type='color']::-moz-color-swatch {
     position: absolute;
     top: 0;
     height: 100%;
-    width: 90%;
+    width: 80%;
     border: 4px solid black;
     content: '';
     z-index: -1;
     background: url('/images/overlays/monochrome.jpg') no-repeat fixed 0px -175px / 100%;
     opacity: 0.1;
+    margin-left: 20px;
+
 }
 .speech-bubble {
     position: relative;

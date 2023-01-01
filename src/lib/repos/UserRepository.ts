@@ -2,7 +2,7 @@ import type { UserEntity, UserModel } from "$lib/interfaces/UserModel";
 import type { User } from "@supabase/supabase-js";
 import { Repository, type IRepository } from "./Repository";
 
-export class UserRepository extends Repository<UserModel, UserEntity> {
+export class UserRepository extends Repository<UserModel, UserEntity, UserEntity> {
     public getAll(options: { limit: number; match?: Record<string, unknown> | undefined; }): Promise<UserModel[]> {
         throw new Error("Method not implemented.");
     }

@@ -1,12 +1,12 @@
 import type { HomebrewCategoriesEnum } from "$lib/enums/Enums";
 import { RepositoryFactory } from "$lib/factories/RepositoryFactory";
 import type { BaseModel } from "$lib/interfaces/BaseModel";
-import type { HomebrewEntity, HomebrewModel } from "$lib/interfaces/HomebrewModel";
+import type { HomebrewModel, HomebrewEntity } from "$lib/interfaces/HomebrewModel";
 import type { IEntityMapper } from "$lib/mappers/EntityMapper";
 import type { TypedSupabaseClient } from "@supabase/auth-helpers-sveltekit/dist/types";
 import {  Repository } from "./Repository";
 
-export class HomebrewsRepository extends Repository<HomebrewModel, HomebrewEntity> {
+export class HomebrewsRepository extends Repository<HomebrewModel, HomebrewEntity, HomebrewEntity> {
     public getAll(options: { limit: number; match?: Record<string, unknown> | undefined; }): Promise<HomebrewModel[]> {
         throw new Error("Method not implemented.");
     }
@@ -17,6 +17,10 @@ export class HomebrewsRepository extends Repository<HomebrewModel, HomebrewEntit
 
     public async save(formData: FormData): Promise<HomebrewModel> {
         var entity = this.mapper.modelToEntity(this.mapper.objectToModel(Object.fromEntries(formData)));
+
+        console.log('SAVING HOMEBREW DATA');
+        console.log(entity);
+        //return new HomebrewModel('', HomebrewCategoriesEnum.Allies);
 
         const { data, error } = await this.supabaseClient.from('homebrews').upsert(entity).select().order('id').limit(1).single();
 
@@ -33,13 +37,13 @@ export class HomebrewsRepository extends Repository<HomebrewModel, HomebrewEntit
 
 }
 
-export abstract class HomebrewsBaseRepository<TModel extends BaseModel, TEntity> extends Repository<TModel, TEntity> {
+export abstract class HomebrewsBaseRepository<TModel extends BaseModel, TEntity, TEntityView> extends Repository<TModel, TEntity, TEntityView> {
     homebrewsRepository: HomebrewsRepository;
     category: HomebrewCategoriesEnum
 
     constructor(
         supabaseClient: TypedSupabaseClient,
-        mapper: IEntityMapper<TModel, TEntity>,
+        mapper: IEntityMapper<TModel, TEntity, TEntityView>,
         category: HomebrewCategoriesEnum
         ) {
         super(supabaseClient, mapper);

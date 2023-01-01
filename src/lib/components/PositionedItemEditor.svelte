@@ -11,7 +11,7 @@
     export let title: string = StringHelper.fromCamelCase(name);
     export let type: string = 'text';
     export let placeholder: string = '';
-    export let fontSize: number = 0;
+    export let fontSize: number | undefined = undefined;
 
     function handleEdit() {
         const formFields: FormField[] = [{
@@ -59,7 +59,7 @@
     style:--width={template.size.width}
     style:--height={template.size.height}
     style:--font={template.font}
-    style:--fontSize="{fontSize == 0 ? template.font_size : fontSize}px"
+    style:--fontSize="{!fontSize || fontSize == 0 ? template.font_size : fontSize}px"
     style:--fontColor={template.font_color}
     style:--textAlign={alignment}
     on:click|preventDefault={handleEdit}

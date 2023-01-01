@@ -4,9 +4,9 @@
     export let homebrew: HomebrewModel;
 </script>
 
-<input type="hidden" name="augs_license" bind:value={homebrew.augsLicense}>
-<input type="hidden" name="date_created" bind:value={homebrew.dateCreated}>
-<input type="hidden" name="date_modified" bind:value={homebrew.dateModified}>
-<input type="hidden" name="homebrew_category" bind:value={homebrew.homebrewCategory}>
+<input type="hidden" name="augsLicense" bind:value={homebrew.augsLicense}>
+<input type="hidden" name="dateCreated" bind:value={homebrew.dateCreated}>
+<input type="hidden" name="dateModified" bind:value={homebrew.dateModified}>
+<input type="hidden" name="homebrewCategory" bind:value={homebrew.homebrewCategory}>
 <input type="hidden" name="id" bind:value={homebrew.id}>
-<input type="hidden" name="user_id" bind:value={homebrew.userId}>
+<input type="hidden" name="userId" bind:value={homebrew.userId}>

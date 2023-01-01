@@ -1,7 +1,7 @@
 import type { TokenEntity, TokenModel } from "$lib/interfaces/TokenModel";
 import { BaseMapper } from "./EntityMapper";
 
-export class TokensMapper extends BaseMapper<TokenModel, TokenEntity> {
+export class TokensMapper extends BaseMapper<TokenModel, TokenEntity, TokenEntity> {
     objectToModel(object: any): TokenModel {
         throw new Error("Method not implemented.");
     }

@@ -4,6 +4,7 @@ import { HomebrewModel } from "./HomebrewModel";
 import type { ThemeTemplatesEnum } from "./templates/ThemeTemplates";
 
 export type HeroEntity = Database["public"]["Tables"]["heroes"]["Row"];
+export type HeroEntityView = Database["public"]["Views"]["heroes_table"]["Row"];
 export type HeroActionDice = [DiceIconsEnum, DiceIconsEnum, DiceIconsEnum, DiceIconsEnum, DiceIconsEnum, DiceIconsEnum];
 
 export class HeroModel extends HomebrewModel {
@@ -46,11 +47,11 @@ export class HeroModel extends HomebrewModel {
     abilityNameFontSize?: number
     abilityEffectFontSize?: number
 
-    public getNameFontSize(): number | undefined {
+/*     public getNameFontSize(): number | undefined {
         if (this.nameFontSize && this.nameFontSize != 0) {
             return this.nameFontSize;
         }
-    }
+    } */
 
     public isValid(): boolean {
         if (!this.name || !this.traitKeywords || !this.moveAttribute || (!this.abilityNames || this.abilityNames.length == 0) || !this.heroImage || !this.iconImage) {

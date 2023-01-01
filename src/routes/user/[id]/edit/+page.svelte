@@ -7,10 +7,10 @@
 </script>
 
 {#if userModel && userModel.id == $page.data.session?.user.id}
-<form method="POST" use:enhance class="max-w-5xl m-auto grid gap-4" >
-    <div class="comic-border bg-surface-200">
+<form method="POST" use:enhance class="comic-form max-w-2xl m-auto grid gap-4" >
+    <div>
         <header>
-            <h1 class="bg-tertiary-600 px-8 py-4 text-2xl">Edit your User Profile</h1>
+            <h1>Edit your User Profile</h1>
         </header>
         <div class="px-8 py-4 grid gap-4">
             <input name="id" type="hidden" value="{userModel.id}">

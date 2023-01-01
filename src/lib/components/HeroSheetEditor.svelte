@@ -252,8 +252,18 @@
     }
 </style>
 
-<form method="POST" action="/api/heroes?/save" class="m-auto grid gap-5" use:enhance>
+<form method="POST" action="/api/heroes?/save" class="m-auto grid gap-5" 
+    use:enhance={() => {
+        return async ({update}) => {
+            
+            var obj = await update();
+            console.log('hero save callback');
+            console.log(obj);
+        }
+    }}
+>
     <HomebrewFields homebrew={hero}></HomebrewFields>
+    <input name="tokenId" type="hidden" bind:value={hero.tokenId}>
     <div class="grid gap-5">
         <div class="hero-sheet-container" data-theme={hero.theme} style:background-image="url('{template.background_image}')" style:background-color={hero.sheetBackgroundColor}>
             {#if template.overlay_image}
@@ -414,19 +424,19 @@
         <div class="font-fields-container">
             <label>
                 <span>Hero Name<br/>Font Size</span>
-                <input type="number" min="0" step="1" name="nameFontSize" bind:value={hero.nameFontSize} placeholder="10">
+                <input type="number" min="0" step="1" name="nameFontSize" bind:value={hero.nameFontSize} placeholder="0">
             </label>
             <label>
                 <span>Keywords<br/>Font Size</span>
-                <input type="number" min="0" step="1" name="keywordsFontSize" bind:value={hero.keywordsFontSize}>
+                <input type="number" min="0" step="1" name="keywordsFontSize" bind:value={hero.keywordsFontSize} placeholder="0">
             </label>
             <label>
                 <span>Ability Name<br/>Font Size</span>
-                <input type="number" min="0" step="1" name="abilityNameFontSize" bind:value={hero.abilityNameFontSize}>
+                <input type="number" min="0" step="1" name="abilityNameFontSize" bind:value={hero.abilityNameFontSize} placeholder="0">
             </label>
             <label>
                 <span>Ability Effect<br/>Font Size</span>
-                <input type="number" min="0" step="1" name="abilityEffectFontSize" bind:value={hero.abilityEffectFontSize}>
+                <input type="number" min="0" step="1" name="abilityEffectFontSize" bind:value={hero.abilityEffectFontSize} placeholder="0">
             </label>
         </div>
         <div>

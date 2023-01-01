@@ -1,7 +1,7 @@
 import type { UserEntity, UserModel } from "$lib/interfaces/UserModel";
 import { BaseMapper, type IEntityMapper } from "./EntityMapper";
 
-export class UserMapper extends BaseMapper<UserModel, UserEntity> {
+export class UserMapper extends BaseMapper<UserModel, UserEntity, UserEntity> {
     public objectToModel(object: any): UserModel {
         return {
             id: object.id,

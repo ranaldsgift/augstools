@@ -4,7 +4,7 @@ import type { TypedSupabaseClient } from "@supabase/auth-helpers-sveltekit/dist/
 
 export interface IBaseRepository {
     supabaseClient: TypedSupabaseClient
-    mapper: IEntityMapper<BaseModel, any>
+    mapper: IEntityMapper<BaseModel, any, any>
     getAll(options: {
         limit: number,
         match?: Record<string, unknown>
@@ -15,7 +15,7 @@ export interface IBaseRepository {
 }
 
 export interface IRepository<TModel extends BaseModel, TEntity> extends IBaseRepository {
-    mapper: IEntityMapper<TModel, TEntity>
+    mapper: IEntityMapper<TModel, TEntity, any>
     getAll(options: {
         limit: number,
         match?: Record<string, unknown>
@@ -25,12 +25,12 @@ export interface IRepository<TModel extends BaseModel, TEntity> extends IBaseRep
     delete(id: string | number): void
 }
 
-export abstract class Repository<TModel extends BaseModel, TEntity> implements IRepository<TModel, TEntity> {
+export abstract class Repository<TModel extends BaseModel, TEntity, TEntityView> implements IRepository<TModel, TEntity> {
     supabaseClient: TypedSupabaseClient;
-    mapper: IEntityMapper<TModel, TEntity>
+    mapper: IEntityMapper<TModel, TEntity, TEntityView>
     
     
-    constructor(supabaseClient: TypedSupabaseClient, mapper: IEntityMapper<TModel, TEntity>) {
+    constructor(supabaseClient: TypedSupabaseClient, mapper: IEntityMapper<TModel, TEntity, TEntityView>) {
         this.supabaseClient = supabaseClient;
         this.mapper = mapper;
     }

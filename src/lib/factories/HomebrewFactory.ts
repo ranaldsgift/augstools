@@ -28,6 +28,7 @@ export class HomebrewFactory {
                 heroModel.imagePositionLeft = 0,
                 heroModel.imagePositionTop = 0,
                 heroModel.theme = ThemeTemplatesEnum.TMNT;
+                heroModel.tokenId = 1;
 
                 model = heroModel;
         }
