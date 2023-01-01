@@ -1,13 +1,3 @@
-@font-face {
-    font-family: 'BebasNeueBold';
-    src: url('/fonts/BebasNeue_Bold.ttf') format('ttf');
-}
-
-@font-face {
-    font-family: 'DINCondensedBold';
-    src: url('/fonts/DIN-Condensed-Bold.ttf') format('ttf');
-}
-
 html, body { @apply h-full overflow-hidden; }
 
 html {
@@ -204,13 +194,13 @@ input[type='color']::-moz-color-swatch {
 }
 .speech-bubble {
     position: relative;
-    background: rgba(var(--color-warning-400));
+    background: rgba(var(--color-warning-300));
     padding: 1rem;
     border-radius: 0.75rem;
     box-shadow: -1px 1px 2px 0 black;
 }
 .speech-bubble *:not(.unstyled) {
-    color: rgba(var(--color-warning-100));
+    color: rgba(var(--color-surface-900));
 }
 .speech-bubble::after {
     content: "";
@@ -219,7 +209,7 @@ input[type='color']::-moz-color-swatch {
     left: 75px;
     border-width: 20px 0 0 20px;
     border-style: solid;
-    border-color: rgba(var(--color-warning-400)) transparent;
+    border-color: rgba(var(--color-warning-300)) transparent;
     display: block;
     width: 0;
 }

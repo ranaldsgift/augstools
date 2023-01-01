@@ -439,7 +439,7 @@
                     </div>
                     <PigeonPeteSays>
                         <p>To save your Hero, please complete the following fields:</p>
-                        <p class="text-warning-900 unstyled">{hero.validityErrors()}</p>
+                        <p class="text-warning-800 unstyled">{hero.validityErrors()}</p>
                     </PigeonPeteSays>
                 {/if}        
             </div>
