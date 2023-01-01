@@ -1,17 +1,36 @@
 <script lang="ts">
-    import homebrewTypes from '$lib/data/homebrewTypeData.json'
+    import { page } from '$app/stores';
     import NavList from '$lib/components/ComicNavList.svelte';
+    import { Breadcrumb, Crumb } from '@skeletonlabs/skeleton';
+    import { EnumHelper } from '$lib/helpers/EnumHelper';
+    import { HomebrewCategoriesEnum } from '$lib/enums/Enums';
+    import { StringHelper } from '$lib/helpers/StringHelper';
 
     let navItems: {name: string, url: string }[] = [];
 
-    homebrewTypes.forEach(homebrewType => {
+    const categories = EnumHelper.getKeys(HomebrewCategoriesEnum);
+
+    categories.forEach(category => {
         navItems.push({
-            name: homebrewType.name,
-            url: `/homebrew/${homebrewType.name.toLowerCase()}/create`
+            name: StringHelper.fromCamelCase(category),
+            url: `/homebrew/create/${category}`
         })
     });
-
 </script>
 
-<h1>What type of Homebrew would you like to create?</h1>
+<Breadcrumb>
+	<Crumb href='/'>
+		<span>Home</span>
+	</Crumb>
+	<Crumb>
+		<span>Create</span>
+	</Crumb>
+</Breadcrumb>
+
+{#if $page.data.session && $page.data.authUser?.userName}
 <NavList listItems={navItems}></NavList>
+{:else if $page.data.session}
+<p>Please <a href="/user/{$page.data.session.user.id}/edit">edit your profile</a> before creating homebrew content.</p>
+{:else}
+<p>Please login to create homebrew content.</p>
+{/if}

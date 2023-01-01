@@ -1,453 +1,448 @@
-<!-- <style>
-    .hero-overlay {
-    background-image: url('../assets/images/homebrew/hero_overlay.png');
-    gap: 10px;
-}
-.homebrew-template-container.hero-template {
-    height: 566px;
-    width: 700px;
-    border-radius: 10px;
-    box-shadow: 1px 1px 5px black;
-    position: relative;
-}
-
-.hero-overlay, .hero-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-}
-.hero-background {
-    background: var(--background-color);
-}
-
-.hero-ability {
-    position: absolute;
-    top: 145px;
-    left: 395px;
-    width: 300px;
-    display: grid;
-    grid-row-gap: 2px;
-}
-
-span, button {
-    border: none;
-    font-family: 'bangersregular';
-    font-size: 32px;
-    text-align: center;
-    background: none;
-}
-
-.hero-ability-description {
-    border: none;
-    font-family: inherit;
-    font-size: inherit;
-    font-family: smackattack_bbregular;    
-    resize: none;
-    height: 250px;
-    text-align: center;
-    overflow: hidden;
-    background: none;
-    max-width: 300px;
-}
-
-.hero-stats {
-    position: absolute;
-    display: grid;
-    grid-auto-flow: column;
-    grid-template-columns: 56px 54px 55px 54px 63px;
-    top: 70px;
-    left: 350px;
-}
-
-.hero-stats span, .hero-stats button {
-    color: #fff;
-    width: 50px;
-    text-shadow: 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black;
-}
-
-span.hero-stat-health {
-    position: absolute;
-    color: #000;
-    top: -40px;
-    text-shadow: none;
-    right: 8px;
-}
-
-span.hero-stat-awaken {
-    font-size: 20px;
-    margin-left: 12px;
-    text-align: center;
-    width: 30px;
-    display: block;
-    margin-top: 2px;
-}
-
-.hero-information {
-    position: absolute;
-    display: grid;
-    grid-template-areas:
-        "icon name"
-        "icon factions";
-    grid-template-columns: 80px 238px;
-    grid-template-rows: 50px 30px;
-    top: 10px;
-    left: 10px;
-    align-items: end;
-    grid-column-gap: 10px;
-}
-
-.hero-icon {
-    grid-area: icon;
-    width: 100%;
-    height: 100%;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.hero-name {
-    grid-area: name;
-    text-align: left;
-    font-size: var(--font-size);
-    align-self: end;
-}
-
-.hero-factions {
-    grid-area: factions;
-    font-size: 20px;
-    text-align: left;
-    align-self: start;
-}
-
-.hero-image {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 388px;
-    height: 485px;
-    background-repeat: no-repeat;
-    background-position: var(--left) var(--top);
-    background-size: var(--size);
-}
-
-.hero-image input {
-    font-size: 0;
-    opacity: 0;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-}
-
-h2 {
-    margin: 0;
-}
-
-.hero-dice {
-    position: absolute;
-    bottom: 30px;
-    left: 385px;
-    display: grid;
-    grid-template-columns: repeat(6, 40px);
-    grid-template-rows: 40px;
-    grid-column-gap: 10px;
-}
-
-.hero-dice>div:nth-child(1) {
-    margin-top: 5px;
-}
-.hero-dice>div:nth-child(2) {
-    margin-top: 4px;
-}
-.hero-dice>div:nth-child(3) {
-    margin-top: 3px;
-}
-.hero-dice>div:nth-child(4) {
-    margin-top: 2px;
-}
-.hero-dice>div:nth-child(5) {
-    margin-top: 1px;
-}
-.hero-dice>div:nth-child(6) {
-    margin-top: 0px;
-}
-.hero-dice>div {
-    height: 35px;
-    width: 35px;
-}
-.hero-dice .icon {
-    height: 39px;
-    width: 39px;
-    background-size: contain;
-    position: absolute;
-}
-
-.icon[data-icon='melee'][data-type='tmnt'][data-inverted='false'] {
-    background-image: url('../assets/images/homebrew/tmnt/melee.png');
-}
-.icon[data-icon='double-melee'][data-type='tmnt'][data-inverted='false'] {
-    background-image: url('../assets/images/homebrew/tmnt/double_melee.png');
-}
-.icon[data-icon='range'][data-type='tmnt'][data-inverted='false'] {
-    background-image: url('../assets/images/homebrew/tmnt/range.png');
-}
-.icon[data-icon='double-range'][data-type='tmnt'][data-inverted='false'] {
-    background-image: url('../assets/images/homebrew/tmnt/double_range.png');
-}
-.icon[data-icon='move'][data-type='tmnt'][data-inverted='false'] {
-    background-image: url('../assets/images/homebrew/tmnt/move.png');
-}
-.icon[data-icon='double-move'][data-type='tmnt'][data-inverted='false'] {
-    background-image: url('../assets/images/homebrew/tmnt/double_move.png');
-}
-.icon[data-icon='block'][data-type='tmnt'][data-inverted='false'] {
-    background-image: url('../assets/images/homebrew/tmnt/block.png');
-}
-.icon[data-icon='block-melee'][data-type='tmnt'][data-inverted='false'] {
-    background-image: url('../assets/images/homebrew/tmnt/block_melee.png');
-}
-.icon[data-icon='block-range'][data-type='tmnt'][data-inverted='false'] {
-    background-image: url('../assets/images/homebrew/tmnt/block_range.png');
-}
-.icon[data-icon='block-move'][data-type='tmnt'][data-inverted='false'] {
-    background-image: url('../assets/images/homebrew/tmnt/block_move.png');
-}
-.icon[data-icon='focus'][data-type='tmnt'][data-inverted='false'] {
-    background-image: url('../assets/images/homebrew/tmnt/focus.png');
-}
-.icon[data-icon='chi'][data-type='tmnt'][data-inverted='false'] {
-    background-image: url('../assets/images/homebrew/tmnt/chi.png');
-}
-.icon[data-icon='wild'] {
-    background-image: url('../assets/images/homebrew/wild.png');
-}
-.icon[data-icon='one-time-use'] {
-    background-image: url('../assets/images/homebrew/one_time_use.png');
-}
-.icon[data-icon='persistent'] {
-    background-image: url('../assets/images/homebrew/persistent.png');
-}
-.icon[data-icon='health'], .icon[data-icon='health'][data-type='tmnt'][data-inverted='false'] {
-    background-image: url('../assets/images/homebrew/tmnt/health.png');
-}
-.icon[data-icon='arrow_up'] {
-    background-image: url('../assets/images/homebrew/arrow_up.png');
-}
-.icon[data-icon='arrow_down'] {
-    background-image: url('../assets/images/homebrew/arrow_down.png');
-}
-.icon[data-icon='skill'] {
-    background-image: url('../assets/images/homebrew/skill.png');
-}
-
-.template-options {
-    display: grid;
-    grid-auto-flow: row;
-    align-items: center;
-    grid-column-gap: 20px;
-    grid-row-gap: 10px;
-}
-.template-options>div {
-    display: grid;
-    grid-auto-flow: column;
-    grid-template-rows: repeat(2, minmax(30px, max-content));
-    grid-auto-columns: 100px;
-    grid-column-gap: 10px;
-}
-.background {
-    background-color: var(--background-color);
-    position: absolute;
-    width: 35px;
-    height: 35px;
-    border: 2px
- solid var(--border-color);
-    border-radius: 5px;
-    box-sizing: content-box;
-}
-
-.hero-dice[data-inverted='true'] .icon {
-    filter: invert(1);
-}
-#saveHero {
-    cursor: pointer;
-    width: 100px;
-}
-
-.saved-template-container>canvas:nth-child(n+2) {
-    display: none;
-}
-
-.image-settings {
-    display: grid;
-    grid-auto-flow: column;
-    grid-template-rows: 1fr 1fr;
-    grid-auto-columns: 100px;
-    grid-column-gap: 10px;
-}
-
-.template-options label, .image-settings label {
-    align-self: end;
-    padding: 5px;
-    background: #4caf50;
-    height: calc(100% - 10px);
-    border-radius: 5px 5px 0 0;
-    outline: 1px solid black;
-    text-align: center;
-    align-content: center;
-    display: grid;
-}
-
-input[type='color'], .invert-color-container {
-    height: 100%;
-    width: 100%;
-}
-
-.invert-color-container {
-    display: grid;
-    align-content: center;
-    justify-content: center;
-    background: #673ab7;
-}
-
-input, .invert-color-container, select, textarea {
-    outline: 1px solid black;
-    border-radius: 0 0 5px 5px;
-    border: none;
-}
-.hero-information-options {
-    grid-template-columns: 200px 100px 200px 200px 500px;
-}
-.homebrew-template-container {
-    line-height: 1;
-}
-</style> -->
-
 <script lang="ts">
-    import { HeroSheetTemplates, TemplateThemes } from "$lib/interfaces/heroTemplateModel";
-    import { bind } from "svelte/internal";
-    import type { Database } from "../../schema"
+    import { enhance } from "$app/forms";
+    import PositionedContainer from "./PositionedContainer.svelte";
+    import PositionedTextEditor from "./PositionedItemEditor.svelte";
+    import { modalStore, RadioGroup, RadioItem, tooltip, type ModalComponent, type ModalSettings } from '@skeletonlabs/skeleton';
+    import HeroActionDiceForm from "./ActionDiceForm.svelte";
+    import ActionDiceIcon from "./ActionDiceIcon.svelte";
+    import { DiceIconsEnum } from "$lib/enums/Enums";
+    import ModalFormEditor from "./ModalFormEditor.svelte";
+    import ComicButton from "./ComicButton.svelte";
+    import PositionedImageEditor from "./PositionedImageEditor.svelte";
+    import { ThemeTemplates, ThemeTemplatesEnum } from "$lib/interfaces/templates/ThemeTemplates";
+    import type { FormField } from "$lib/interfaces/templates/HtmlTemplates";
+    import HomebrewFields from "./HomebrewFields.svelte";
+    import { EnumHelper } from "$lib/helpers/EnumHelper";
+    import { HeroModel } from "$lib/interfaces/HeroModel";
+    import { writable, type Writable } from "svelte/store";
+    import PigeonPeteSays from "./PigeonPeteSays.svelte";
 
-    export let theme: TemplateThemes = TemplateThemes.TMNT;
-    export let hero_id: number;
+    export let template = ThemeTemplates.TMNT.heroSheet;
+    export let heroObject: any;
 
-    export const template = HeroSheetTemplates[theme];
-
-
-    export let heroViewModel = { name: 'Hero Test', action_dice: ["Melee", "Defend", "Range", "Move", "Focus", "DefendMove"]};
-    export let hero: Database["public"]["Tables"]["heroes"]["Row"] = {} as Database["public"]["Tables"]["heroes"]["Row"];
-    hero.id = hero_id;
-    hero.move_attribute = 1;
-    hero.action_dice = ["Melee", "Defend", "Range", "Move", "Focus", "DefendMove"];
+    heroObject = { ...heroObject };
+    Object.setPrototypeOf(heroObject, HeroModel.prototype);
+    let hero = heroObject as HeroModel;
     
-    //TODO load data from db, set vars to populate template
+    const themeSelection: Writable<string> = writable(hero.theme ?? ThemeTemplatesEnum.TMNT);
+    themeSelection.subscribe(value => { 
+        var theme = value as ThemeTemplatesEnum;
 
-/*     const handleStatAdjustment = (stat: string, adjustment: number) => {
-        switch (stat) {
-            case 'move':
-                hero.move_attribute = hero.move_attribute + adjustment;
-                return;
-            default:
-                return;
+        if (hero.theme != theme) {
+            hero.theme = theme;
+            template = ThemeTemplates[theme].heroSheet;
         }
+    });
+
+    function handleActionDiceEdit(index: number) {
+        const icon = hero.actionDice ? hero.actionDice[index] : DiceIconsEnum.Move;
+		const c: ModalComponent = { ref: HeroActionDiceForm, props: { "theme": hero.theme, "icon": icon } };
+		const d: ModalSettings = {
+			type: 'component',
+			title: 'Select an Action Dice Icon',
+			component: c,
+			response: (actionDie: any) => {
+				if (!actionDie)
+                    return;
+                
+                hero.actionDice![index] = actionDie;
+                hero = hero;
+			}
+		};
+		modalStore.trigger(d);
     }
 
-    const handleStatIncrease = (e) => {
-        let currentStat = parseInt(e.target.innerHTML);
-        e.target.innerHTML = `${++currentStat}`;
+    function handleAddAbility() {
+        const formFields: FormField[] = [
+            {
+                name: 'ability_name',
+                type: 'text',
+                value: ''
+            },
+            {
+                name: 'ability_effect',
+                type: 'textarea',
+                value: ''
+            }
+        ]
+
+
+		const c: ModalComponent = { ref: ModalFormEditor, props: { fields: JSON.stringify(formFields) } };
+		const d: ModalSettings = {
+			type: 'component',
+			title: 'Add a Hero Ability',
+			component: c,
+			response: (fields: FormField[]) => {
+				if (!fields)
+                    return;
+                
+                var abilityName = fields.find(field => field.name == 'ability_name')?.value;
+                var abilityEffect = fields.find(field => field.name == 'ability_effect')?.value;
+
+                if (!abilityName || !abilityEffect) {
+                    return;
+                }
+                
+                if (!hero.abilityNames) {
+                    hero.abilityNames = [];
+                }
+
+                if (!hero.abilityEffects) {
+                    hero.abilityEffects = [];
+                }
+
+                hero.abilityNames.push(abilityName);
+                hero.abilityEffects.push(abilityEffect);
+
+                hero = hero;
+			}
+		};
+		modalStore.trigger(d);
     }
 
-    const handleStatDecrease = (e) => {
-        let currentStat = parseInt(e.target.innerHTML);
-        e.target.innerHTML = `${--currentStat}`;
-    }
+    function handleEditAbility(index: number) {
+        const abilityName = hero.abilityNames && hero.abilityNames.length > index ? hero.abilityNames[index] : '';
+        const abilityEffect = hero.abilityEffects && hero.abilityEffects.length > index  ? hero.abilityEffects[index] : '';
 
-    const handleEdit = (e) => {
-        let edit = prompt('Enter the value for the move stat', heroStat);
-        if (edit) {
-            heroStat = edit;
-        }
-    } */
+        const formFields: FormField[] = [
+            {
+                name: 'ability_name',
+                type: 'text',
+                value: abilityName
+            },
+            {
+                name: 'ability_effect',
+                type: 'textarea',
+                value: abilityEffect
+            }
+        ]
+
+        const c: ModalComponent = { ref: ModalFormEditor, props: { fields: JSON.stringify(formFields) } };
+        const d: ModalSettings = {
+            type: 'component',
+            title: 'Edit Hero Ability',
+            component: c,
+            response: (fields: FormField[]) => {
+                if (!fields || !hero.abilityNames || !hero.abilityEffects) {
+                    return;
+                }
+
+                var abilityName = fields.find(field => field.name == 'ability_name')?.value;
+                var abilityEffect = fields.find(field => field.name == 'ability_effect')?.value;
+
+                if (!abilityName || !abilityEffect) {
+                    return;
+                }
+
+                hero.abilityNames[index] = abilityName;
+                hero.abilityEffects[index] = abilityEffect;
+
+                hero = hero;
+            }
+        };
+        modalStore.trigger(d);
+    }
 </script>
 
 <style>
-
+    .hero-sheet-container {
+        background-repeat: no-repeat;
+        width: 700px;
+        height: 566px;
+        box-shadow: black 0 0 3px 1px;
+        border-radius: 5px;
+        position: relative;
+    }
+    :global(.positioned-container:hover .add-ability-button) {
+        display: flex;
+        justify-content: center;
+    }
+    .hero-sheet-container[data-theme="BTAS"] .hero-action-dice-container button {
+        border: none !important;
+        border-radius: 0 !important;
+    }
+    .hero-action-dice-container button:hover {
+        filter: contrast(1.5);
+    }
+    .hero-sheet-container[data-theme="TMNT"] .hero-action-dice-container, .hero-sheet-container[data-theme="TMNT"] :global(.positioned-text) {
+        transform: skew(1.7deg, -1.7deg);
+    }
+    .hero-sheet-container[data-theme="TMNT"] :global(.hero-action-dice-container), .hero-sheet-container[data-theme="TMNT"] :global(.positioned-container) {
+        transform: skew(1deg, -1deg);
+    }
+    .hero-overlay-image {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        pointer-events: none;
+        z-index: 2;
+    }
+    label input {
+        width: 100%;
+    }
+    .form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    div.form>div {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-end;
+    }
+    div.form>div>* {
+        flex: 1;
+    }
+    form {
+        max-width: 1500px;  
+		grid-template-columns: repeat(auto-fit, minmax(700px, 1fr));
+        gap: 30px;
+    }
+    .hero-sheet-container :global(input[name="heroImage"] + button.positioned-image) {
+        z-index: 0;
+    }
+    .hero-sheet-container[data-theme="BTAS"] :global(input[name="traitKeywords"] + button.positioned-text) {
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .hero-sheet-container[data-theme="BTAS"] :global(input[name="name"] + button.positioned-text) {
+        text-shadow: 3px 3px 1px black;
+        margin-left: -2px;
+    }
+    :global(.ability-container *), :global(.hero-attribute-container *), :global(.hero-action-dice-container *) {
+        z-index: 3;
+    }
+    .hero-sheet-container[data-theme="BTAS"] .hero-action-dice-container :global(.positioned-container) {
+        border: 2px solid transparent;
+        background: linear-gradient(#777777 0%, #fff 25%, #fff 75%, #777777 100%) border-box;
+        border-radius: 4px;
+    }
+    .hero-sheet-container[data-theme="BTAS"] .ability-container p {
+        letter-spacing: 1px;
+    }
+    .hero-sheet-container[data-theme="BTAS"] .hero-attribute-container>:global(button) {
+        text-shadow: -2px -2px 0px black, 2px 2px 0px black, -2px 2px 0px black, 2px -2px 0px black;
+    }
+    .hero-sheet-container[data-theme="BTAS"] p.hero-ability-name {
+        background: linear-gradient(to right, #77777700 5%, #ffffff70 25%, #ffffff70 75%, #77777700 95%)     left     bottom  no-repeat;
+        background-size: 100% 1px;
+        margin-bottom: 4px;
+    }
+    .theme-fields-container label {
+        pointer-events: none;
+    }
+    .theme-fields-container input {
+        pointer-events: all;
+    }
+    
+    .hero-sheet-container[data-theme="TMNT"] :global(.hero-action-dice-container svg) {
+        width: calc(100% - 8px);
+        height: calc(100% - 8px);
+        top: 4px;
+        left: 4px;
+        position: relative;
+    }
+    
+    .hero-sheet-container[data-theme="BTAS"] :global(.hero-action-dice-container svg) {
+        width: calc(100% - 4px);
+        height: calc(100% - 4px);
+        top: 2px;
+        left: 2px;
+        position: relative;
+    }
 </style>
 
-<div class="hero-sheet-container" style="background-image: url({template.background_image})">
-    <div class="hero-icon"></div>
-    <span class="hero-name">{heroViewModel.name}</span>
-    <span class="hero-traits"></span>
-    <span class="hero-move"></span>
-    <span class="hero-attack"></span>
-    <span class="hero-defend"></span>
-    <span class="hero-skill"></span>
-    <span class="hero-focus"></span>
-    <span class="hero-life"></span>
-    <span class="hero-awakening"></span>
-    <div class="hero-ability-container"></div>
-    <div class="hero-action-dice-container">
-        {#if heroViewModel.action_dice}
-            {#each heroViewModel.action_dice as action_die}
-                <div data-icon={action_die}></div>
-            {/each}
-        {/if}
+<form method="POST" action="/api/heroes?/save" class="m-auto grid gap-5" use:enhance>
+    <HomebrewFields homebrew={hero}></HomebrewFields>
+    <div class="grid gap-5">
+        <div class="hero-sheet-container" data-theme={hero.theme} style:background-image="url('{template.background_image}')" style:background-color={hero.sheetBackgroundColor}>
+            {#if template.overlay_image}
+            <div class="hero-overlay-image" style:background-image="url('{template.overlay_image}')"></div>
+            {/if}
+            <PositionedImageEditor name="iconImage" title="Icon Image URL" bind:template={template.icon} bind:imageUrl={hero.iconImage}>
+            </PositionedImageEditor>
+            <PositionedImageEditor name="heroImage" title="Hero Image URL" template={template.image} bind:imageUrl={hero.heroImage} bind:imageScale={hero.heroImageScale} bind:left={hero.imagePositionLeft} bind:top={hero.imagePositionTop}>
+            </PositionedImageEditor>
+            <PositionedTextEditor name="name" template={template.name} bind:content={hero.name} bind:fontSize={hero.nameFontSize} placeholder="Hero Name" alignment="left">
+            </PositionedTextEditor>    
+            <PositionedTextEditor name="traitKeywords" template={template.traits} bind:content={hero.traitKeywords} bind:fontSize={hero.keywordsFontSize} placeholder="Factions • Keywords" alignment="left">
+            </PositionedTextEditor>
+            <div class="hero-attribute-container">
+                <PositionedTextEditor name="moveAttribute" type="number" template={template.move_value} bind:content={hero.moveAttribute}>
+                </PositionedTextEditor>
+                <PositionedTextEditor name="attackAttribute" type="number" template={template.attack_value} bind:content={hero.attackAttribute}>
+                </PositionedTextEditor>
+                <PositionedTextEditor name="defendAttribute" type="number" template={template.defend_value} bind:content={hero.defendAttribute}>
+                </PositionedTextEditor>
+                <PositionedTextEditor name="skillAttribute" type="number" template={template.skill_value} bind:content={hero.skillAttribute}>
+                </PositionedTextEditor>
+                <PositionedTextEditor name="focusAttribute" type="number" template={template.focus_value} bind:content={hero.focusAttribute}>
+                </PositionedTextEditor>
+                <PositionedTextEditor name="lifeAttribute" type="number" template={template.life_value} bind:content={hero.lifeAttribute}>
+                </PositionedTextEditor>
+                <PositionedTextEditor name="awakeningAttribute" type="number" template={template.awakening_value} bind:content={hero.awakeningAttribute}>
+                </PositionedTextEditor>
+            </div>
+            <PositionedContainer className="ability-container" template={template.ability_container}>
+                {#if hero.abilityNames && hero.abilityEffects}
+                <input type="hidden" name="abilityNames" hidden bind:value={hero.abilityNames}>
+                <input type="hidden" name="abilityEffects" hidden bind:value={hero.abilityEffects}>
+                    {#each hero.abilityNames as name, index}
+                        <button style:position="relative" on:click|preventDefault={() => handleEditAbility(index) }>
+                            <p
+                                class="hero-ability-name text-center pb-1" 
+                                style:font-family={template.ability_name.font}
+                                style:font-size="{hero.abilityNameFontSize ?? template.ability_name.font_size}px"
+                                style:line-height="{hero.abilityNameFontSize ?? template.ability_name.font_size}px"
+                                style:color={template.ability_name.font_color}
+                            >{name}</p>
+                            <p 
+                                class="hero-ability-effect pb-4 text-center" 
+                                style:font-family={template.ability_effect.font}
+                                style:font-size="{hero.abilityEffectFontSize ?? template.ability_effect.font_size}px"
+                                style:line-height="{hero.abilityEffectFontSize ?? template.ability_effect.font_size + 2}px"
+                                style:color={template.ability_effect.font_color}
+                            >{hero.abilityEffects[index]}</p>
+                            <iconify-icon icon="mdi:edit" class="hover" hidden></iconify-icon>
+                        </button>
+                    {/each}
+                {:else}
+                    <p 
+                        class="hero-ability-name text-center pb-1" 
+                        style:font-family={template.ability_name.font}
+                        style:font-size="{hero.abilityNameFontSize ?? template.ability_name.font_size}px"
+                        style:line-height="{hero.abilityNameFontSize ?? template.ability_name.font_size}px"
+                        style:color={template.ability_name.font_color}
+                    >Hero Ability Name</p>
+                    <p 
+                        class="hero-ability-effect pb-4 text-center" 
+                        style:font-family={template.ability_effect.font}
+                        style:font-size="{hero.abilityEffectFontSize ?? template.ability_effect.font_size}px"
+                        style:line-height="{hero.abilityEffectFontSize ?? template.ability_effect.font_size}px"
+                        style:color={template.ability_effect.font_color}
+                    >Hero Ability Effect</p>
+                {/if}
+                <div class="add-ability-button" hidden>
+                    <ComicButton text="Add Ability" icon="material-symbols:add" callback={handleAddAbility}></ComicButton>
+                </div>            
+            </PositionedContainer>
+            <div class="hero-action-dice-container">
+                <input type="hidden" name="actionDice" hidden bind:value={hero.actionDice}>
+                {#if hero.actionDice}
+                    {#each hero.actionDice as action_die, index}
+                    <PositionedContainer template={template.action_dice[index]}>
+                        <button 
+                            style:width={'100%'} 
+                            style:height={'100%'} 
+                            style:background-color={hero.diceBackgroundColor}
+                            style:background-repeat="none"
+                            style:background-size="contain"
+                            style:border="2px solid {hero.diceIconColor}"
+                            style:border-radius="5px"
+                            on:click|preventDefault={() => { handleActionDiceEdit(index) }}
+                        >
+                            <ActionDiceIcon theme={hero.theme ?? ThemeTemplatesEnum.TMNT} icon={DiceIconsEnum[action_die]} bind:color={hero.diceIconColor}></ActionDiceIcon>
+                        </button>
+                    </PositionedContainer>
+                    {/each}
+                {/if}
+            </div>
+        </div>
     </div>
-</div>
-
-<!-- <div style="display: flex; column-gap: 10px; row-gap: 10px; flex-wrap: wrap;">
-    <div class="homebrew-template-container hero-template tmnt-icon">
-      <div class="hero-background" style="--background-color: #646464;"></div>
-      <div class="hero-overlay"></div>
-      <div class="hero-image" style="--left: 0px; --top: 0px; --size: 100%;"></div>
-      <div class="hero-stats">
-        <button contenteditable='true' on:contextmenu|preventDefault={() => handleStatAdjustment('move', -1)} on:click="{() => handleStatAdjustment('move', 1)}" bind:textContent={hero.move_attribute}></button>
-        <button on:contextmenu|preventDefault={handleStatDecrease} on:click={handleStatIncrease} class="hero-stat-attack">1</button>
-        <span on:contextmenu|preventDefault={handleStatDecrease} on:click={handleStatIncrease} class="hero-stat-block">1</span>
-        <span on:contextmenu|preventDefault={handleStatDecrease} on:click={handleStatIncrease} class="hero-stat-skill">1</span>
-        <span on:contextmenu|preventDefault={handleStatDecrease} on:click={handleStatIncrease} class="hero-stat-focus">1</span>
+    <div class="form comic-form">
+        <header>
+            <h1>Customize your Hero</h1>
+        </header>
         <div>
-          <span on:contextmenu|preventDefault={handleStatDecrease} on:click={handleStatIncrease} class="hero-stat-health">1</span>
-          <span on:contextmenu|preventDefault={handleStatDecrease} on:click={handleStatIncrease} class="hero-stat-awaken">1</span>
+            <label class="flex items-center gap-5">
+                <span>Theme</span>
+                <RadioGroup selected={themeSelection}>
+                    {#each EnumHelper.getKeys(ThemeTemplatesEnum) as theme}
+                        <RadioItem value={theme}>{theme}</RadioItem>
+                    {/each}
+                </RadioGroup>
+                <select name="theme" bind:value={hero.theme} hidden>
+                    {#each EnumHelper.getKeys(ThemeTemplatesEnum) as theme}
+                        <option value={theme}>{theme}</option>
+                    {/each}
+                </select>
+            </label>
         </div>
-      </div>
-      <div class="hero-information">
-        <div class="hero-icon">
+        <div class="theme-fields-container">
+            <label>
+                <span>Sheet Background Color</span>
+                <input type="color" name="sheetBackgroundColor" bind:value={hero.sheetBackgroundColor}>
+            </label>
+            <label>
+                <span>Dice Background Color</span>
+                <input type="color" name="diceBackgroundColor" bind:value={hero.diceBackgroundColor}>
+            </label>
+            <label>
+                <span>Dice Icon Color</span>
+                <input type="color" name="diceIconColor" bind:value={hero.diceIconColor}>
+            </label>
         </div>
-        <span style="--font-size: 40px" class="hero-name justify-end" placeholder="Hero Name" type="text">Hero Name</span>
-        <span class="hero-factions" placeholder="Hero Factions" type="text">Hero Factions</span>
-      </div>
-      <div class="hero-ability">
-        <span class="hero-ability-name" placeholder="Ability Name">Ability Name</span>
-        <span class="hero-ability-description" placeholder="Ability description"></span>
-      </div>
-      <div class="hero-dice" data-inverted="false" style="--background-color: #3f51b5; --border-color: #000;">
+        <div class="general-fields-container">
+            {#if false}
+            <!-- TODO: Allow users to override the hero sheet image with their own
+            This would allow users to use their own themes and styles by loading the image specified here
+            instead of generating the hero sheet from the data provided -->
+            <label use:tooltip={{ content: 'Use this to display a static image for this Hero Sheet instead of one generated from the saved Hero data.'}}>
+                <span>Sheet Override</span>
+                <input type="text" name="originalImage" bind:value={hero.originalImage}>
+            </label>
+            {/if}
+            <label class="w-full">
+                <span>Hero Description</span>
+                <textarea name="description" bind:value={hero.description} placeholder="Enter a description of your Hero here. Include details about any special mechanics related to your Hero or any other information."></textarea>
+            </label>
+        </div>
+        <div class="image-fields-container">
+            <label>
+                <span>Hero Image Scale</span>
+                <input type="number" name="heroImageScale" bind:value={hero.heroImageScale}>
+            </label>
+            <label>
+                <span>Hero Image Position Left</span>
+                <input type="number" name="imagePositionLeft" bind:value={hero.imagePositionLeft}>
+            </label>
+            <label>
+                <span>Hero Image Position Top</span>
+                <input type="number" name="imagePositionTop" bind:value={hero.imagePositionTop}>
+            </label>
+        </div>
+        <div class="font-fields-container">
+            <label>
+                <span>Hero Name<br/>Font Size</span>
+                <input type="number" min="0" step="1" name="nameFontSize" bind:value={hero.nameFontSize} placeholder="10">
+            </label>
+            <label>
+                <span>Keywords<br/>Font Size</span>
+                <input type="number" min="0" step="1" name="keywordsFontSize" bind:value={hero.keywordsFontSize}>
+            </label>
+            <label>
+                <span>Ability Name<br/>Font Size</span>
+                <input type="number" min="0" step="1" name="abilityNameFontSize" bind:value={hero.abilityNameFontSize}>
+            </label>
+            <label>
+                <span>Ability Effect<br/>Font Size</span>
+                <input type="number" min="0" step="1" name="abilityEffectFontSize" bind:value={hero.abilityEffectFontSize}>
+            </label>
+        </div>
         <div>
-          <div class="background"></div>
-          <div class="icon" data-icon="move" data-type="tmnt" data-inverted="false"></div>
+            <div class="grid gap-5 pt-2">
+                {#if hero.isValid()}
+                    <ComicButton text="Save" icon="material-symbols:save"></ComicButton>
+                {:else}
+                    <div class="disabled-button">
+                        <ComicButton text="Save" icon="material-symbols:save"></ComicButton>
+                    </div>
+                    <PigeonPeteSays>
+                        <p>To save your Hero, please complete the following fields:</p>
+                        <p class="text-warning-900 unstyled">{hero.validityErrors()}</p>
+                    </PigeonPeteSays>
+                {/if}        
+            </div>
         </div>
-        <div>
-          <div class="background"></div>
-          <div class="icon" data-icon="melee" data-type="tmnt" data-inverted="false"></div>
-        </div>
-        <div>
-          <div class="background"></div>
-          <div class="icon" data-icon="range" data-type="tmnt" data-inverted="false"></div>
-        </div>
-        <div>
-          <div class="background"></div>
-          <div class="icon" data-icon="double-range" data-type="tmnt" data-inverted="false"></div>
-        </div>
-        <div>
-          <div class="background"></div>
-          <div class="icon" data-icon="block" data-type="tmnt" data-inverted="false"></div>
-        </div>
-        <div>
-          <div class="background"></div>
-          <div class="icon" data-icon="chi" data-type="tmnt" data-inverted="false"></div>
-        </div>
-      </div>
     </div>
-    <div class="saved-template-container"></div>
-  </div> -->
+</form>

@@ -1,7 +1,7 @@
-/** @type {import('./$types').PageLoad} */
-export function load({ params }) {
+import type { LayoutLoad } from "./$types"
+
+export const load: LayoutLoad = async ({ params }) => {
     return {
-        homebrewType: params.type,
-        listItems: []
+        homebrewType: params.type
     }; 
 }

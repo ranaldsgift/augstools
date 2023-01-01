@@ -1,17 +1,18 @@
 <script lang="ts">
     import '../theme.postcss';
-    import '@brainandbones/skeleton/styles/all.css';
+    import '@skeletonlabs/skeleton/styles/all.css';
     import '../app.postcss';
     import "../app.css";
     import { onMount } from 'svelte'
     import { invalidate } from '$app/navigation'
     import { supabaseClient } from '$lib/db'
     import { page } from '$app/stores';
-    import { AppShell, AppBar, Divider } from '@brainandbones/skeleton';
-    import { menu } from '@brainandbones/skeleton';
-    import { Drawer } from '@brainandbones/skeleton';
-    import { writable, type Writable } from 'svelte/store';    
-    import * as UserBusiness from '$lib/business/UserBusiness'
+    import { AppShell, AppBar, Divider, Modal } from '@skeletonlabs/skeleton';
+    import { menu } from '@skeletonlabs/skeleton';
+    import { Drawer } from '@skeletonlabs/skeleton';
+    import { drawerStore } from '@skeletonlabs/skeleton';
+    import ComicButton from '$lib/components/ComicButton.svelte';
+    import { UserHelper } from '$lib/helpers/UserHelper';
 
     let email = '';
 
@@ -28,8 +29,7 @@
     });
 
     const handleLogin = async () => {
-
-        const { error } = await UserBusiness.signIn(email);
+        const { error } = await UserHelper.signIn(email);
 
         if (error) {
             console.log(error);
@@ -39,30 +39,26 @@
         
         alert('Check your email for a magic link to login!');
         drawerClose();
-        
-/*         try {
-            const {error} = await supabaseClient.auth.signInWithOtp({ email });
-            if (error) throw error
-            alert('Check your email for a magic link to login!');
-            drawerClose();
-        } catch (error) {
-            console.log(error);
-            alert('An error occured, please try again. If problems persist, wait 10 minutes and try again.');
-        } */
     }
-
-    const storeDrawer: Writable<boolean> = writable(false);
-    const drawerOpen: any = () => { storeDrawer.set(true) };
-    const drawerClose: any = () => { storeDrawer.set(false) };
+    
+    const drawerOpen: any = () => { drawerStore.open({position: 'left'}) };
+    const drawerClose: any = () => { drawerStore.close() };
 </script>
 
 <svelte:head><title>AUGS Tools</title></svelte:head>
 
-<Drawer open={storeDrawer} position="left">    
-    <form on:submit|preventDefault={handleLogin} class="grid grid-flow-row m-auto max-w-xl gap-5 mt-10">
-        <p class="text-center italic">Enter your e-mail to sign in with a Magic Link.</p><p class="text-center italic">You will be sent a link to authenticate yourself.</p>
-        <input type="email" bind:value={email} label="E-mail">
-        <button class="btn bg-primary-500 btn-base text-white" type="submit">Sign In</button>
+<Modal/>
+
+<Drawer>    
+    <form on:submit|preventDefault={handleLogin} class="comic-form grid grid-flow-row m-auto max-w-xl gap-5 mt-10">
+        <p class="text-center">Enter your e-mail to sign in with a Magic Link.</p><p class="text-center italic">You will be sent a link to authenticate yourself.</p>
+        <label>
+            <span>E-Mail</span>
+            <input type="email" bind:value={email}>
+        </label>
+        <div class="m-auto">
+            <ComicButton text="Sign In" icon="mdi:login"></ComicButton>
+        </div>        
     </form>
 </Drawer>
 
@@ -74,18 +70,18 @@
                 <button use:menu={{ menu: 'navmenu', fixed: true }} class="btn-icon">
                     <iconify-icon icon="mdi:menu"></iconify-icon>
                 </button>
-                <nav class="menu-tl card p-4 w-48 shadow-xl top-16 left-2 list-nav text-black" data-menu="navmenu">
+                <nav class="menu-tl card p-4 w-48 shadow-xl top-16 left-2 list-nav" data-menu="navmenu">
                     <ul>
                         <li><a href="/homebrew">Homebrew</a></li>
                         <li><a href="/coop">Co-Op Tool</a></li>
-                        <li><a href="/db">AUGS Database</a></li>
+                        <li><a href="/assets">Assets</a></li>
                         <Divider></Divider>
                         <li><a href="/about">About</a></li>
                         <li><a href="/contact">Contact</a></li>
                         <li><a href="/support">Support</a></li>
                     </ul>
                 </nav>
-                <a href="/" class="text-xl text-white">AUGSTOOLS</a>
+                <a href="/"><span class="text-2xl tracking-wider" style:font-family="bangersregular">AUGSTOOLS</span></a>
             </svelte:fragment>
             <svelte:fragment slot="trail">
                 <a class="btn-icon" href="https://github.com/ranaldsgift/augstools" target="_blank" rel="noreferrer">

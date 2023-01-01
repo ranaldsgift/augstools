@@ -1,6 +1,5 @@
 <script>
-    /** @type {import('./$types').PageData} */
-    export let data;
+    import { page } from '$app/stores'
 </script>
 
-<h1>View the community created {data.homebrewType}</h1>
+<h1>View the community created {$page.data.homebrewType}</h1>

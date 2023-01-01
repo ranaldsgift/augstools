@@ -4,7 +4,7 @@
 
 <style>
     a.btn::before {
-        background-image: url('../../assets/images/overlays/monochrome.jpg');
+        background-image: url('/images/overlays/monochrome.jpg');
         content: '';
         position: absolute;
         top: 0;
@@ -19,11 +19,11 @@
     a.btn::after {
         position: absolute;
         content: attr(data-title);
+        text-shadow: 2px 2px black;
         display: grid;
         align-content: center;
         left: 2rem;
         color: #fff;
-        transform: skew(15deg);
     }
     a.btn:nth-child(2n+2)::after {
         justify-content: end;
@@ -35,6 +35,7 @@
     a.btn {
         position: relative;
         transform: perspective(100px) rotatey(1deg);
+        min-height: 48px;
     }
     .comic-list-nav {
         color: #fff;
@@ -61,10 +62,9 @@
 </style>
 
 <div class="m-auto">
-    <nav class="grid m-auto gap-4 px-8 max-w-3xl comic-list-nav">
+    <nav class="grid m-auto gap-4 px-8 max-w-5xl comic-list-nav">
         {#each listItems as listItem}
         <a href="{listItem.url}/" class="grid btn" data-title={listItem.name}>
-            {listItem.name}
         </a>
         {/each}
     </nav>

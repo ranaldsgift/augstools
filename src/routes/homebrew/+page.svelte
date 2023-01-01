@@ -1,15 +1,29 @@
 <script lang="ts">
-    import homebrewTypes from '$lib/data/homebrewTypeData.json'
     import NavList from '$lib/components/ComicNavList.svelte';
+    import { EnumHelper } from '$lib/helpers/EnumHelper';
+    import { HomebrewCategoriesEnum } from '$lib/enums/Enums';
+    import { StringHelper } from '$lib/helpers/StringHelper';
+    import { Breadcrumb, Crumb } from '@skeletonlabs/skeleton';
 
     let navItems: {name: string, url: string }[] = [];
 
-    homebrewTypes.forEach(homebrewType => {
+    const categories = EnumHelper.getKeys(HomebrewCategoriesEnum);
+
+    categories.forEach(category => {
         navItems.push({
-            name: homebrewType.name,
-            url: `/homebrew/${homebrewType.name.toLowerCase()}`
+            name: StringHelper.fromCamelCase(category),
+            url: `/homebrew/${category}`
         })
     });
 </script>
+
+<Breadcrumb>
+	<Crumb href='/'>
+		<span>Home</span>
+	</Crumb>
+	<Crumb>
+		<span>Homebrew</span>
+	</Crumb>
+</Breadcrumb>
 
 <NavList listItems={navItems}></NavList>

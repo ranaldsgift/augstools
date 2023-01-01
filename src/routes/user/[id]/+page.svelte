@@ -1,25 +1,50 @@
 <script lang="ts">
     import { page } from "$app/stores";
-    import * as UserBusiness from '$lib/business/UserBusiness'
+    import ComicButton from "$lib/components/ComicButton.svelte";
+    import { UserHelper } from "$lib/helpers/UserHelper";
+
+    const userModel = $page.data.userModel;
 </script>
-
-<div class="comic-card p-8 max-w-5xl">
-    <h1>User page</h1>
-
-
-    {#if !$page.data.user && $page.data.session?.user.id == $page.params.id}
-        <p>Please create your user profile by clicking <a href='/user/edit'>here</a>.</p>
-    {:else if !$page.data.user}
+{#if !userModel}
+<p>The user does not exist. Either they never existed, or they existed at some point and then ceased to exist.</p>
+{:else}
+<div class="comic-border max-w-5xl m-auto bg-surface-200">
+    {#if !userModel?.userName && $page.data.session?.user.id == $page.params.id}
+        <p class="p-8">Please create your user profile by clicking the Edit button below.</p>
+    {:else if !userModel?.userName}
         <p>This user hasn't completed their user profile, or this user does not exist.</p>
-    {:else if $page.data.user}
-        <p>Id: {$page.data.user.id}</p>
-        <p>Email: {$page.data.user.userName}</p>
-    {/if}
-
-    {#if $page.data.session?.user.id == $page.params.id}
-        <button class="flex" on:click={async () => { await UserBusiness.signOut(); }}>
-            <iconify-icon icon="mdi:logout"></iconify-icon><span>Log Out</span>
-        </button>
-        <button>user is logged in</button>
+    {:else if userModel}
+    <h1 class="bg-tertiary-600 px-8 py-4 text-2xl">{userModel.userName}</h1>
+    <div class="flex">
+        {#if userModel.avatar}
+            <img src={userModel.avatar} alt="Avatar" class="h-32 w-32 ml-8 mt-8 mb-8">
+        {/if}
+        <div class="p-8 grid">
+            {#if userModel.discord}
+            <p class="flex gap-2">
+                <iconify-icon icon="ic:baseline-discord"></iconify-icon>
+                {userModel.discord}
+            </p>
+            {/if}
+            {#if userModel.boardgamegeek}
+            <p class="flex gap-2">
+                <iconify-icon icon="game-icons:meeple"></iconify-icon>
+                <a href="https://boardgamegeek.com/user/{userModel.boardgamegeek}" target="_blank" rel="noreferrer">{userModel.boardgamegeek}</a>
+            </p>
+            {/if}
+            <p class="flex gap-2">Created On: {userModel.dateCreated?.toLocaleDateString()}</p>
+            <p class="flex gap-2">Last Updated: {userModel.dateModified?.toLocaleDateString()}</p>
+        </div>
+    </div>
     {/if}
 </div>
+
+{#if $page.data.session?.user.id == $page.params.id}
+<div class="flex gap-2 px-8 pb-4 justify-center">
+    <a href="/user/{$page.params.id}/edit" class="unstyled">
+        <ComicButton text="Edit Profile" icon="mdi:edit"></ComicButton>
+    </a>
+    <ComicButton text="Logout" icon="mdi:logout" callback={async () => { await UserHelper.signOut(); }}></ComicButton>
+</div>
+{/if}
+{/if}

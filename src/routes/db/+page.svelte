@@ -1,1 +1,0 @@
-<h1>AUGS Database</h1>

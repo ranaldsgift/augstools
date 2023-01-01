@@ -9,7 +9,7 @@
 
 <style>
     .comic-background {
-        background-image: url('../../assets/images/overlays/zoom.jpg');
+        background-image: url('/images/overlays/zoom.jpg');
     }
     .comic-card {
         border-color: black;
@@ -32,7 +32,7 @@
         transform: skew(-15deg);
         padding-left: 20px;
         padding-top: 10px;
-        background: #fff;
+        letter-spacing: 0.15rem;
     }
 
     .comic-card .card-footer {
@@ -63,7 +63,7 @@
         height: 100%;
         background-size: cover;
         background-position: bottom;
-        opacity: 0.15;
+        opacity: 0.25;
     }
     .card-footer p, .card-header h1 {
         transform: skew(15deg);
@@ -79,8 +79,8 @@
     <div class="comic-background"></div>
     {/if}
     {#if title.length > 0}
-    <header class="card-header">
-        <h1 class="font-bold text-lg pb-2 text-tertiary-600">{title}</h1>
+    <header class="card-header bg-tertiary-600">
+        <h1 class="font-bold text-2xl pb-2">{title}</h1>
     </header>
     {/if}
     <div class="card-body">
