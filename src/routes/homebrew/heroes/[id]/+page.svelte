@@ -27,6 +27,9 @@
     <Crumb href='/'>
         <span>Home</span>
     </Crumb>
+    <Crumb href='/homebrew'>
+        <span>Homebrews</span>
+    </Crumb>
     <Crumb href='/homebrew/heroes'>
         <span>Heroes</span>
     </Crumb>

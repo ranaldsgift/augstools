@@ -73,7 +73,8 @@
                 <nav class="menu-tl card p-4 w-48 shadow-xl top-16 left-2 list-nav" data-menu="navmenu">
                     <ul>
                         <li><a href="/homebrew">Homebrew</a></li>
-                        <li><a href="/coop">Co-Op Tool</a></li>
+                        <li><a href="/create">Create</a></li>
+                        <li><a href="https://tmntaugs.pages.dev/">Co-Op Tool</a></li>
                         <li><a href="/assets">Assets</a></li>
                         <Divider></Divider>
                         <li><a href="/about">About</a></li>
