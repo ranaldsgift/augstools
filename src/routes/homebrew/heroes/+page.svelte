@@ -57,7 +57,6 @@
         background-color: rgb(var(--color-surface-200) / 1);
     }
     .table-container tbody tr {
-        height: 80px;
         box-shadow: inset 0 -3px 2px -2px #000000;
         border: 1px solid black;
         background-color: rgb(var(--color-surface-200) / 1);
@@ -72,7 +71,7 @@
         top: 94px;
     }
     .table-container .table tbody td:nth-child(n+5) {
-        background-color: rgba(var(--color-tertiary-600));
+        background-color: rgba(var(--diceBackgroundColor));
         width: 60px;
     }
     .table-container .table tbody td:nth-child(5) {
@@ -83,7 +82,7 @@
     .table-container .table thead tr {
         border: 1px solid black;
         background-color: rgba(var(--color-tertiary-700));
-        color: rgba(var(--color-surface-200));
+        color: white;
         text-shadow: 2px 2px rgba(var(--color-surface-800));
         font-family: 'bangersregular';
         font-size: 1.75rem;
@@ -94,6 +93,7 @@
     }
     .table-container .table tr td {
         padding: 10px;
+        font-size: 1rem;
     }
 </style>
 
@@ -148,7 +148,7 @@
                             </td>
                             {#if row.actionDice && row.theme}
                                 {#each row.actionDice as dice}
-                                    <td height="20px"><ActionDiceIcon theme={ThemeTemplatesEnum[row.theme]} icon={DiceIconsEnum[dice]}></ActionDiceIcon></td>   
+                                    <td style:--diceBackgroundColor={row.theme == "TMNT" ? "var(--color-secondary-500)" : "var(--color-primary-500)" } height="20px"><ActionDiceIcon theme={ThemeTemplatesEnum[row.theme]} icon={DiceIconsEnum[dice]}></ActionDiceIcon></td>   
                                 {/each}
                             {/if}
                         </tr>
