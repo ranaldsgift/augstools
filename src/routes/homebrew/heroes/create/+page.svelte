@@ -5,6 +5,8 @@
     import { Breadcrumb, Crumb } from '@skeletonlabs/skeleton';
     import { StringHelper } from '$lib/helpers/StringHelper';
     import PigeonPeteSays from '$lib/components/PigeonPeteSays.svelte';
+
+    const hero = $page.data.heroModel ? JSON.parse($page.data.heroModel) : undefined;
 </script>
 
 <svelte:head><title>Create Your Homebrew</title></svelte:head>
@@ -16,15 +18,15 @@
     <Crumb href='/homebrew/create'>
         <span>Create</span>
     </Crumb>
-    <Crumb>{StringHelper.toTitleCase($page.params.type)}</Crumb>
+    <Crumb>Heroes</Crumb>
 </Breadcrumb>
 
-{#if $page.data.session}
+{#if $page.data.session && $page.data.authUser?.userName}
 
-    {#if !$page.data.homebrew}
+    {#if !hero}
         <p>There is no data available for this Homebrew.</p>
-    {:else if $page.params.type == HomebrewCategoriesEnum.Heroes}
-        <HeroEditor heroObject={$page.data.homebrew}></HeroEditor>
+    {:else}
+        <HeroEditor heroObject={hero}></HeroEditor>
     {/if}
 
 {:else}

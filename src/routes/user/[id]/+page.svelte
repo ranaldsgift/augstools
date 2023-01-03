@@ -32,8 +32,8 @@
                 <a href="https://boardgamegeek.com/user/{userModel.boardgamegeek}" target="_blank" rel="noreferrer">{userModel.boardgamegeek}</a>
             </p>
             {/if}
-            <p class="flex gap-2">Created On: {userModel.dateCreated?.toLocaleDateString()}</p>
-            <p class="flex gap-2">Last Updated: {userModel.dateModified?.toLocaleDateString()}</p>
+            <p class="flex gap-2">Created On: {new Date(userModel.dateCreated).toLocaleDateString()}</p>
+            <p class="flex gap-2">Last Updated: {new Date(userModel.dateModified).toLocaleDateString()}</p>
         </div>
     </div>
     {/if}

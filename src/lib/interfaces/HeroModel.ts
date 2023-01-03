@@ -5,7 +5,6 @@ import type { ThemeTemplatesEnum } from "./templates/ThemeTemplates";
 
 export type HeroEntity = Database["public"]["Tables"]["heroes"]["Row"];
 export type HeroEntityView = Database["public"]["Views"]["heroes_table"]["Row"];
-export type HeroActionDice = [DiceIconsEnum, DiceIconsEnum, DiceIconsEnum, DiceIconsEnum, DiceIconsEnum, DiceIconsEnum];
 
 export class HeroModel extends HomebrewModel {
 
@@ -39,13 +38,17 @@ export class HeroModel extends HomebrewModel {
     focusAttribute?: number
     lifeAttribute?: number
     awakeningAttribute?: number
-    actionDice?: HeroActionDice
+    actionDice?: [DiceIconsEnum, DiceIconsEnum, DiceIconsEnum, DiceIconsEnum, DiceIconsEnum, DiceIconsEnum]
     isSupportFigure?: boolean
 
     nameFontSize?: number
     keywordsFontSize?: number
     abilityNameFontSize?: number
     abilityEffectFontSize?: number
+
+    username?: string
+
+    //ratings?: number
 
 /*     public getNameFontSize(): number | undefined {
         if (this.nameFontSize && this.nameFontSize != 0) {

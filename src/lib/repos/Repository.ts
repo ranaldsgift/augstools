@@ -5,7 +5,7 @@ import type { TypedSupabaseClient } from "@supabase/auth-helpers-sveltekit/dist/
 export interface IBaseRepository {
     supabaseClient: TypedSupabaseClient
     mapper: IEntityMapper<BaseModel, any, any>
-    getAll(options: {
+    getAll(options?: {
         limit: number,
         match?: Record<string, unknown>
     }): Promise<BaseModel[]>
@@ -16,7 +16,7 @@ export interface IBaseRepository {
 
 export interface IRepository<TModel extends BaseModel, TEntity> extends IBaseRepository {
     mapper: IEntityMapper<TModel, TEntity, any>
-    getAll(options: {
+    getAll(options?: {
         limit: number,
         match?: Record<string, unknown>
     }): Promise<TModel[]>
@@ -35,7 +35,7 @@ export abstract class Repository<TModel extends BaseModel, TEntity, TEntityView>
         this.mapper = mapper;
     }
     
-    public abstract getAll(options: { limit: number; match?: Record<string, unknown> | undefined }): Promise<TModel[]>;
+    public abstract getAll(options?: { limit: number; match?: Record<string, unknown> | undefined }): Promise<TModel[]>;
     public abstract findById(id: string | number): Promise<TModel>;
     public abstract save(formData: FormData): Promise<TModel>;
     public abstract delete(id: string | number): void;

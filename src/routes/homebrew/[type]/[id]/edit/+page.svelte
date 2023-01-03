@@ -5,6 +5,8 @@
     import { Breadcrumb, Crumb } from '@skeletonlabs/skeleton';
 </script>
 
+<svelte:head><title>Edit Your Homebrew</title></svelte:head>
+
 {#if $page.data.session && $page.data.authUser?.userName}
 
     {#if !$page.data.homebrew}

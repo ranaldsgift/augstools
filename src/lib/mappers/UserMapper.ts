@@ -9,8 +9,8 @@ export class UserMapper extends BaseMapper<UserModel, UserEntity, UserEntity> {
             userName: object.userName ?? '',
             avatar: object.avatar ?? '',
             boardgamegeek: object.boardgamegeek ?? '',
-            dateCreated: object.dateCreated ? new Date(object.dateCreated) : new Date(),
-            dateModified: object.dateModified ? new Date(object.dateModified) : new Date(),
+            dateCreated: object.dateCreated,
+            dateModified: object.dateModified,
             discord: object.discord ?? '',
             isDeleted: object.isDeleted
         }
@@ -22,8 +22,8 @@ export class UserMapper extends BaseMapper<UserModel, UserEntity, UserEntity> {
             user_name: model.userName ?? '',
             avatar: model.avatar ?? '',
             boardgamegeek: model.boardgamegeek ?? '',
-            date_created: model.dateCreated.toISOString(),
-            date_modified: model.dateModified.toISOString(),
+            date_created: model.dateCreated,
+            date_modified: model.dateModified,
             discord: model.discord ?? '',
             is_deleted: model.isDeleted
         }
@@ -35,8 +35,8 @@ export class UserMapper extends BaseMapper<UserModel, UserEntity, UserEntity> {
             userName: entity.user_name ?? '',
             avatar: entity.avatar ?? '',
             boardgamegeek: entity.boardgamegeek ?? '',
-            dateCreated: new Date(entity.date_created),
-            dateModified: new Date(entity.date_modified),
+            dateCreated: entity.date_created,
+            dateModified: entity.date_modified,
             discord: entity.discord ?? '',
             isDeleted: entity.is_deleted
         }

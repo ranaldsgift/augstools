@@ -9,7 +9,7 @@ export interface UserModel {
     avatar: string
     discord: string
     boardgamegeek: string
-    dateCreated: Date
-    dateModified: Date
+    dateCreated: string
+    dateModified: string
     isDeleted: boolean
 }

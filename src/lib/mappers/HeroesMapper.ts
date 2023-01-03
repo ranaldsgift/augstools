@@ -1,4 +1,5 @@
 import { AugsLicensesEnum, DiceIconsEnum, HomebrewCategoriesEnum } from "$lib/enums/Enums";
+import { DateHelper } from "$lib/helpers/DateHelper";
 import { HeroModel, type HeroEntity, type HeroEntityView } from "$lib/interfaces/HeroModel";
 import { ThemeTemplatesEnum } from "$lib/interfaces/templates/ThemeTemplates";
 import { TableViewBaseMapper } from "./EntityMapper";
@@ -42,6 +43,10 @@ export class HeroesMapper extends TableViewBaseMapper<HeroModel, HeroEntity, Her
         hero.description = object.description;
         hero.name = object.name;
         hero.originalImage = object.originalImage;
+        hero.nameFontSize = parseInt(object.nameFontSize);
+        hero.keywordsFontSize = parseInt(object.keywordsFontSize);
+        hero.abilityNameFontSize = parseInt(object.abilityNameFontSize);
+        hero.abilityEffectFontSize = parseInt(object.abilityEffectFontSize);
         
         return hero;
     }
@@ -75,7 +80,11 @@ export class HeroesMapper extends TableViewBaseMapper<HeroModel, HeroEntity, Her
             skill_attribute: model.skillAttribute!,
             theme: model.theme!,
             token_id: model.tokenId!,
-            trait_keywords: model.traitKeywords!
+            trait_keywords: model.traitKeywords!,
+            name_font_size: model.nameFontSize!,
+            keywords_font_size: model.keywordsFontSize!,
+            ability_name_font_size: model.abilityNameFontSize!,
+            ability_effect_font_size: model.abilityEffectFontSize!
         }
     }
     
@@ -116,14 +125,19 @@ export class HeroesMapper extends TableViewBaseMapper<HeroModel, HeroEntity, Her
         hero.heroImageScale = entity.hero_image_scale!;
         hero.isSupportFigure = false;
         hero.augsLicense = AugsLicensesEnum[entity.augs_license!];
-        hero.dateCreated = new Date(entity.date_created!);
-        hero.dateModified = new Date(entity.date_modified!);
+        hero.dateCreated = entity.date_created!;
+        hero.dateModified = entity.date_modified!;
         hero.homebrewCategory = HomebrewCategoriesEnum[entity.homebrew_category!];
         hero.isDeleted = entity.is_deleted!;
         hero.userId = entity.user_id!;
         hero.description = entity.description!;
         hero.name = entity.name!;
         hero.originalImage = entity.original_image!;
+        hero.username = entity.user_name!;
+        hero.nameFontSize = entity.name_font_size!;
+        hero.keywordsFontSize = entity.keywords_font_size!;
+        hero.abilityNameFontSize = entity.ability_name_font_size!;
+        hero.abilityEffectFontSize = entity.ability_effect_font_size!;
         
         return hero;
     }

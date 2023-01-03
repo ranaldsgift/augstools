@@ -1,0 +1,20 @@
+import { HomebrewCategoriesEnum } from '$lib/enums/Enums';
+import { HomebrewFactory } from '$lib/factories/HomebrewFactory';
+import type { HeroModel } from '$lib/interfaces/HeroModel';
+import type { PageServerLoad } from './$types';
+
+export const load: PageServerLoad = async ({ locals, params }) => {
+
+    var authUser = locals.session?.user;
+  
+    if (!authUser) {
+      console.log('Please login or create an account to create homebrews.');
+      return;
+    }
+
+    var heroModel = HomebrewFactory.new<HeroModel>(authUser.id, HomebrewCategoriesEnum.Heroes);
+  
+    return {
+        heroModel: JSON.stringify(heroModel)
+    };
+}

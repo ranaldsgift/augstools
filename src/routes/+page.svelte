@@ -12,7 +12,7 @@
         {
             "title": "Create",
             "icon": "mdi:create",
-            "url": "/homebrew/create",
+            "url": "/create",
             "description": "Create your own AUGS content with this tool. Start homebrewing right now!",
             "shadowColor": "#00bfffd9"
         },

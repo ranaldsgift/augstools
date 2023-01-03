@@ -1,30 +1,31 @@
 <script lang="ts">
     import HeroEditor from '$lib/components/HeroSheetEditor.svelte';
     import { page } from '$app/stores';
-    import { HomebrewCategoriesEnum } from '$lib/enums/Enums';
     import { Breadcrumb, Crumb } from '@skeletonlabs/skeleton';
-    import { StringHelper } from '$lib/helpers/StringHelper';
+    import type { HeroModel } from '$lib/interfaces/HeroModel';
     import PigeonPeteSays from '$lib/components/PigeonPeteSays.svelte';
+
+    const hero: HeroModel = $page.data.heroModel ? JSON.parse($page.data.heroModel) : undefined;
 </script>
 
-<svelte:head><title>Create Your Homebrew</title></svelte:head>
+<svelte:head><title>Edit Your Homebrew</title></svelte:head>
 
 <Breadcrumb>
     <Crumb href='/'>
         <span>Home</span>
     </Crumb>
-    <Crumb href='/homebrew/create'>
-        <span>Create</span>
+    <Crumb href='/homebrew/heroes'>
+        <span>Heroes</span>
     </Crumb>
-    <Crumb>{StringHelper.toTitleCase($page.params.type)}</Crumb>
+    <Crumb href='/homebrew/heroes/{hero.id}'>{hero.name}</Crumb>
+    <Crumb>Editor</Crumb>
 </Breadcrumb>
 
 {#if $page.data.session}
-
-    {#if !$page.data.homebrew}
+    {#if !hero}
         <p>There is no data available for this Homebrew.</p>
-    {:else if $page.params.type == HomebrewCategoriesEnum.Heroes}
-        <HeroEditor heroObject={$page.data.homebrew}></HeroEditor>
+    {:else}
+        <HeroEditor heroObject={hero}></HeroEditor>
     {/if}
 
 {:else}

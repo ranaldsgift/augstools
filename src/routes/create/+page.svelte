@@ -14,7 +14,7 @@
     categories.forEach(category => {
         navItems.push({
             name: StringHelper.toTitleCase(category),
-            url: `/homebrew/create/${category.toLowerCase()}`
+            url: `/homebrew/${category.toLowerCase()}/create`
         })
     });
 </script>

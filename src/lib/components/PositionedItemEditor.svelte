@@ -8,7 +8,7 @@
     export let content: string | number | undefined;
     export let alignment: string = "center";
     export let name: string;
-    export let title: string = StringHelper.fromCamelCase(name);
+    export let title: string = StringHelper.toTitleCase(name);
     export let type: string = 'text';
     export let placeholder: string = '';
     export let fontSize: number | undefined = undefined;
@@ -26,7 +26,6 @@
             title: title.length == 0 ? undefined : title,
             component: c,
             response: (response: any) => {
-                console.log(response);
                 if (response[0] && response[0].value.toString().length > 0) {
                     content = response[0].value;    
                 }

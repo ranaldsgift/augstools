@@ -18,13 +18,12 @@ export class HomebrewsRepository extends Repository<HomebrewModel, HomebrewEntit
     public async save(formData: FormData): Promise<HomebrewModel> {
         var entity = this.mapper.modelToEntity(this.mapper.objectToModel(Object.fromEntries(formData)));
 
-        console.log('SAVING HOMEBREW DATA');
-        console.log(entity);
-        //return new HomebrewModel('', HomebrewCategoriesEnum.Allies);
+        entity.date_modified = new Date().toISOString();
 
         const { data, error } = await this.supabaseClient.from('homebrews').upsert(entity).select().order('id').limit(1).single();
 
         if (error) {
+            console.log(error);
             throw new Error(`Unable to update item. ${error.message}`);
         }
 

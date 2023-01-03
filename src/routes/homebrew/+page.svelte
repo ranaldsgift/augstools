@@ -11,8 +11,8 @@
 
     categories.forEach(category => {
         navItems.push({
-            name: StringHelper.fromCamelCase(category),
-            url: `/homebrew/${category}`
+            name: StringHelper.toTitleCase(category),
+            url: `/homebrew/${category.toLowerCase()}`
         })
     });
 </script>
@@ -22,7 +22,7 @@
 		<span>Home</span>
 	</Crumb>
 	<Crumb>
-		<span>Homebrew</span>
+		<span>Homebrews</span>
 	</Crumb>
 </Breadcrumb>
 

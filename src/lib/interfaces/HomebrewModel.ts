@@ -10,7 +10,7 @@ export class HomebrewModel extends BaseModel {
         this.userId = userId;
         this.augsLicense = AugsLicensesEnum.Homebrew;
         this.homebrewCategory = category;
-        var currDate = new Date();
+        var currDate = new Date().toISOString();
         this.dateCreated = currDate;
         this.dateModified = currDate;
         this.isDeleted = false;
@@ -22,7 +22,7 @@ export class HomebrewModel extends BaseModel {
     originalImage?: string
     augsLicense: AugsLicensesEnum
     homebrewCategory: HomebrewCategoriesEnum
-    dateCreated: Date
-    dateModified: Date
+    dateCreated: string
+    dateModified: string
     isDeleted: boolean
 }

@@ -19,8 +19,6 @@ export class UserRepository extends Repository<UserModel, UserEntity, UserEntity
 
     public async save(formData: FormData): Promise<UserModel> {
         var entity = this.mapper.modelToEntity(this.mapper.objectToModel(Object.fromEntries(formData)));
-        console.log('saving user');
-        console.log(entity);
 
         entity.date_modified = new Date().toISOString();
         

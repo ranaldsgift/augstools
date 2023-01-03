@@ -16,6 +16,8 @@
     import { HeroModel } from "$lib/interfaces/HeroModel";
     import { writable, type Writable } from "svelte/store";
     import PigeonPeteSays from "./PigeonPeteSays.svelte";
+    import PositionedItem from "./PositionedItem.svelte";
+    import HeroSheet from "./HeroSheet.svelte";
 
     export let template = ThemeTemplates.TMNT.heroSheet;
     export let heroObject: any;
@@ -145,37 +147,9 @@
 </script>
 
 <style>
-    .hero-sheet-container {
-        background-repeat: no-repeat;
-        width: 700px;
-        height: 566px;
-        box-shadow: black 0 0 3px 1px;
-        border-radius: 5px;
-        position: relative;
-    }
     :global(.positioned-container:hover .add-ability-button) {
         display: flex;
         justify-content: center;
-    }
-    .hero-sheet-container[data-theme="BTAS"] .hero-action-dice-container button {
-        border: none !important;
-        border-radius: 0 !important;
-    }
-    .hero-action-dice-container button:hover {
-        filter: contrast(1.5);
-    }
-    .hero-sheet-container[data-theme="TMNT"] .hero-action-dice-container, .hero-sheet-container[data-theme="TMNT"] :global(.positioned-text) {
-        transform: skew(1.7deg, -1.7deg);
-    }
-    .hero-sheet-container[data-theme="TMNT"] :global(.hero-action-dice-container), .hero-sheet-container[data-theme="TMNT"] :global(.positioned-container) {
-        transform: skew(1deg, -1deg);
-    }
-    .hero-overlay-image {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        pointer-events: none;
-        z-index: 2;
     }
     label input {
         width: 100%;
@@ -198,57 +172,14 @@
 		grid-template-columns: repeat(auto-fit, minmax(700px, 1fr));
         gap: 30px;
     }
-    .hero-sheet-container :global(input[name="heroImage"] + button.positioned-image) {
-        z-index: 0;
-    }
-    .hero-sheet-container[data-theme="BTAS"] :global(input[name="traitKeywords"] + button.positioned-text) {
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-    .hero-sheet-container[data-theme="BTAS"] :global(input[name="name"] + button.positioned-text) {
-        text-shadow: 3px 3px 1px black;
-        margin-left: -2px;
-    }
     :global(.ability-container *), :global(.hero-attribute-container *), :global(.hero-action-dice-container *) {
         z-index: 3;
-    }
-    .hero-sheet-container[data-theme="BTAS"] .hero-action-dice-container :global(.positioned-container) {
-        border: 2px solid transparent;
-        background: linear-gradient(#777777 0%, #fff 25%, #fff 75%, #777777 100%) border-box;
-        border-radius: 4px;
-    }
-    .hero-sheet-container[data-theme="BTAS"] .ability-container p {
-        letter-spacing: 1px;
-    }
-    .hero-sheet-container[data-theme="BTAS"] .hero-attribute-container>:global(button) {
-        text-shadow: -2px -2px 0px black, 2px 2px 0px black, -2px 2px 0px black, 2px -2px 0px black;
-    }
-    .hero-sheet-container[data-theme="BTAS"] p.hero-ability-name {
-        background: linear-gradient(to right, #77777700 5%, #ffffff70 25%, #ffffff70 75%, #77777700 95%)     left     bottom  no-repeat;
-        background-size: 100% 1px;
-        margin-bottom: 4px;
     }
     .theme-fields-container label {
         pointer-events: none;
     }
     .theme-fields-container input {
         pointer-events: all;
-    }
-    
-    .hero-sheet-container[data-theme="TMNT"] :global(.hero-action-dice-container svg) {
-        width: calc(100% - 8px);
-        height: calc(100% - 8px);
-        top: 4px;
-        left: 4px;
-        position: relative;
-    }
-    
-    .hero-sheet-container[data-theme="BTAS"] :global(.hero-action-dice-container svg) {
-        width: calc(100% - 4px);
-        height: calc(100% - 4px);
-        top: 2px;
-        left: 2px;
-        position: relative;
     }
 </style>
 
@@ -257,107 +188,14 @@
         return async ({update}) => {
             
             var obj = await update();
-            console.log('hero save callback');
-            console.log(obj);
         }
     }}
 >
     <HomebrewFields homebrew={hero}></HomebrewFields>
     <input name="tokenId" type="hidden" bind:value={hero.tokenId}>
+    <input name="theme" type="hidden" bind:value={hero.theme}>
     <div class="grid gap-5">
-        <div class="hero-sheet-container" data-theme={hero.theme} style:background-image="url('{template.background_image}')" style:background-color={hero.sheetBackgroundColor}>
-            {#if template.overlay_image}
-            <div class="hero-overlay-image" style:background-image="url('{template.overlay_image}')"></div>
-            {/if}
-            <PositionedImageEditor name="iconImage" title="Icon Image URL" bind:template={template.icon} bind:imageUrl={hero.iconImage}>
-            </PositionedImageEditor>
-            <PositionedImageEditor name="heroImage" title="Hero Image URL" template={template.image} bind:imageUrl={hero.heroImage} bind:imageScale={hero.heroImageScale} bind:left={hero.imagePositionLeft} bind:top={hero.imagePositionTop}>
-            </PositionedImageEditor>
-            <PositionedTextEditor name="name" template={template.name} bind:content={hero.name} bind:fontSize={hero.nameFontSize} placeholder="Hero Name" alignment="left">
-            </PositionedTextEditor>    
-            <PositionedTextEditor name="traitKeywords" template={template.traits} bind:content={hero.traitKeywords} bind:fontSize={hero.keywordsFontSize} placeholder="Factions • Keywords" alignment="left">
-            </PositionedTextEditor>
-            <div class="hero-attribute-container">
-                <PositionedTextEditor name="moveAttribute" type="number" template={template.move_value} bind:content={hero.moveAttribute}>
-                </PositionedTextEditor>
-                <PositionedTextEditor name="attackAttribute" type="number" template={template.attack_value} bind:content={hero.attackAttribute}>
-                </PositionedTextEditor>
-                <PositionedTextEditor name="defendAttribute" type="number" template={template.defend_value} bind:content={hero.defendAttribute}>
-                </PositionedTextEditor>
-                <PositionedTextEditor name="skillAttribute" type="number" template={template.skill_value} bind:content={hero.skillAttribute}>
-                </PositionedTextEditor>
-                <PositionedTextEditor name="focusAttribute" type="number" template={template.focus_value} bind:content={hero.focusAttribute}>
-                </PositionedTextEditor>
-                <PositionedTextEditor name="lifeAttribute" type="number" template={template.life_value} bind:content={hero.lifeAttribute}>
-                </PositionedTextEditor>
-                <PositionedTextEditor name="awakeningAttribute" type="number" template={template.awakening_value} bind:content={hero.awakeningAttribute}>
-                </PositionedTextEditor>
-            </div>
-            <PositionedContainer className="ability-container" template={template.ability_container}>
-                {#if hero.abilityNames && hero.abilityEffects}
-                <input type="hidden" name="abilityNames" hidden bind:value={hero.abilityNames}>
-                <input type="hidden" name="abilityEffects" hidden bind:value={hero.abilityEffects}>
-                    {#each hero.abilityNames as name, index}
-                        <button style:position="relative" on:click|preventDefault={() => handleEditAbility(index) }>
-                            <p
-                                class="hero-ability-name text-center pb-1" 
-                                style:font-family={template.ability_name.font}
-                                style:font-size="{hero.abilityNameFontSize ?? template.ability_name.font_size}px"
-                                style:line-height="{hero.abilityNameFontSize ?? template.ability_name.font_size}px"
-                                style:color={template.ability_name.font_color}
-                            >{name}</p>
-                            <p 
-                                class="hero-ability-effect pb-4 text-center" 
-                                style:font-family={template.ability_effect.font}
-                                style:font-size="{hero.abilityEffectFontSize ?? template.ability_effect.font_size}px"
-                                style:line-height="{hero.abilityEffectFontSize ?? template.ability_effect.font_size + 2}px"
-                                style:color={template.ability_effect.font_color}
-                            >{hero.abilityEffects[index]}</p>
-                            <iconify-icon icon="mdi:edit" class="hover" hidden></iconify-icon>
-                        </button>
-                    {/each}
-                {:else}
-                    <p 
-                        class="hero-ability-name text-center pb-1" 
-                        style:font-family={template.ability_name.font}
-                        style:font-size="{hero.abilityNameFontSize ?? template.ability_name.font_size}px"
-                        style:line-height="{hero.abilityNameFontSize ?? template.ability_name.font_size}px"
-                        style:color={template.ability_name.font_color}
-                    >Hero Ability Name</p>
-                    <p 
-                        class="hero-ability-effect pb-4 text-center" 
-                        style:font-family={template.ability_effect.font}
-                        style:font-size="{hero.abilityEffectFontSize ?? template.ability_effect.font_size}px"
-                        style:line-height="{hero.abilityEffectFontSize ?? template.ability_effect.font_size}px"
-                        style:color={template.ability_effect.font_color}
-                    >Hero Ability Effect</p>
-                {/if}
-                <div class="add-ability-button" hidden>
-                    <ComicButton text="Add Ability" icon="material-symbols:add" callback={handleAddAbility}></ComicButton>
-                </div>            
-            </PositionedContainer>
-            <div class="hero-action-dice-container">
-                <input type="hidden" name="actionDice" hidden bind:value={hero.actionDice}>
-                {#if hero.actionDice}
-                    {#each hero.actionDice as action_die, index}
-                    <PositionedContainer template={template.action_dice[index]}>
-                        <button 
-                            style:width={'100%'} 
-                            style:height={'100%'} 
-                            style:background-color={hero.diceBackgroundColor}
-                            style:background-repeat="none"
-                            style:background-size="contain"
-                            style:border="2px solid {hero.diceIconColor}"
-                            style:border-radius="5px"
-                            on:click|preventDefault={() => { handleActionDiceEdit(index) }}
-                        >
-                            <ActionDiceIcon theme={hero.theme ?? ThemeTemplatesEnum.TMNT} icon={DiceIconsEnum[action_die]} bind:color={hero.diceIconColor}></ActionDiceIcon>
-                        </button>
-                    </PositionedContainer>
-                    {/each}
-                {/if}
-            </div>
-        </div>
+        <HeroSheet bind:hero={hero} bind:template={template}></HeroSheet>
     </div>
     <div class="form comic-form">
         <header>
@@ -424,19 +262,19 @@
         <div class="font-fields-container">
             <label>
                 <span>Hero Name<br/>Font Size</span>
-                <input type="number" min="0" step="1" name="nameFontSize" bind:value={hero.nameFontSize} placeholder="0">
+                <input type="number" min="0" step="1" name="nameFontSize" bind:value={hero.nameFontSize} placeholder={template.name.font_size.toString()}>
             </label>
             <label>
                 <span>Keywords<br/>Font Size</span>
-                <input type="number" min="0" step="1" name="keywordsFontSize" bind:value={hero.keywordsFontSize} placeholder="0">
+                <input type="number" min="0" step="1" name="keywordsFontSize" bind:value={hero.keywordsFontSize} placeholder={template.traits.font_size.toString()}>
             </label>
             <label>
                 <span>Ability Name<br/>Font Size</span>
-                <input type="number" min="0" step="1" name="abilityNameFontSize" bind:value={hero.abilityNameFontSize} placeholder="0">
+                <input type="number" min="0" step="1" name="abilityNameFontSize" bind:value={hero.abilityNameFontSize} placeholder={template.ability_name.font_size.toString()}>
             </label>
             <label>
                 <span>Ability Effect<br/>Font Size</span>
-                <input type="number" min="0" step="1" name="abilityEffectFontSize" bind:value={hero.abilityEffectFontSize} placeholder="0">
+                <input type="number" min="0" step="1" name="abilityEffectFontSize" bind:value={hero.abilityEffectFontSize} placeholder={template.ability_effect.font_size.toString()}>
             </label>
         </div>
         <div>

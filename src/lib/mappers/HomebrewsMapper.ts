@@ -17,8 +17,8 @@ export class HomebrewsMapper extends BaseMapper<HomebrewModel, HomebrewEntity, H
             name: object.name ?? '',
             description: object.description ?? '',
             originalImage: object.originalImage ?? '',
-            dateCreated: object.dateCreated ? new Date(object.dateCreated) : new Date(),
-            dateModified: object.dateModified ? new Date(object.dateModified) : new Date(),
+            dateCreated: object.dateCreated,
+            dateModified: object.dateModified,
             isDeleted: object.isDeleted ?? false
         }
     }
@@ -36,8 +36,8 @@ export class HomebrewsMapper extends BaseMapper<HomebrewModel, HomebrewEntity, H
             name: model.name ?? '',
             description: model.description ?? '',
             original_image: model.originalImage ?? '',
-            date_created: model.dateCreated ? model.dateCreated.toISOString() : new Date().toISOString(),
-            date_modified: model.dateModified ? model.dateModified.toISOString() : new Date().toISOString(),
+            date_created: model.dateCreated,
+            date_modified: model.dateModified,
             is_deleted: model.isDeleted ?? false
         }
 
@@ -57,8 +57,8 @@ export class HomebrewsMapper extends BaseMapper<HomebrewModel, HomebrewEntity, H
             name: entity.name ?? '',
             description: entity.description ?? '',
             originalImage: entity.original_image ?? '',
-            dateCreated: entity.date_created ? new Date(entity.date_created) : new Date(),
-            dateModified: entity.date_modified ? new Date(entity.date_modified) : new Date(),
+            dateCreated: entity.date_created,
+            dateModified: entity.date_modified,
             isDeleted: entity.is_deleted ?? false
         }
     }
