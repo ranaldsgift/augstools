@@ -198,7 +198,12 @@
 </style>
 
 <form method="POST" action="/api/heroes?/save" class="m-auto grid gap-5" 
-    use:enhance
+    use:enhance={() => {
+        return async ({update}) => {
+            handleSave();
+            await update();
+        }
+    }}
 >
     <HomebrewFields homebrew={hero}></HomebrewFields>
     <input name="tokenId" type="hidden" bind:value={hero.tokenId}>
