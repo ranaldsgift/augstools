@@ -146,10 +146,9 @@
         modalStore.trigger(d);
     }
 
-    async function handleSave(save: Function) {
+    async function handleSave() {
             
             hero = hero;
-            await save();
             const t: ToastSettings = {
                 message: 'Saved',
                 preset: 'success',
@@ -201,7 +200,8 @@
 <form method="POST" action="/api/heroes?/save" class="m-auto grid gap-5" 
     use:enhance={() => {
         return async ({update}) => {
-            handleSave(update)
+            handleSave();
+            await update();
         }
     }}
 >

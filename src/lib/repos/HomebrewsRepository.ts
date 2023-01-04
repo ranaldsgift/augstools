@@ -20,6 +20,8 @@ export class HomebrewsRepository extends Repository<HomebrewModel, HomebrewEntit
 
         entity.date_modified = new Date().toISOString();
 
+        console.log(entity);
+
         const { data, error } = await this.supabaseClient.from('homebrews').upsert(entity).select().order('id').limit(1).single();
 
         if (error) {
