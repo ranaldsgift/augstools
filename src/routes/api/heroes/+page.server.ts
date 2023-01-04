@@ -5,13 +5,13 @@ export const actions: Actions = {
         const data = await event.request.formData();
 
         try {
-            event.locals.heroesRepository.save(data);
+            await event.locals.heroesRepository.save(data);
         }
         catch (error) {
             console.log('An error occured when saving the Hero data.');
             console.log(error);
         }
 
-        return { success: true};
+        return { success: true };
     }
   };
