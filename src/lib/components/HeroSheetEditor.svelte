@@ -146,15 +146,13 @@
         modalStore.trigger(d);
     }
 
-    async function handleSave(save) {
+    async function handleSave(save: Function) {
             
             hero = hero;
             await save();
             const t: ToastSettings = {
                 message: 'Saved',
-                // Optional: Presets for primary | secondary | tertiary | warning
-                preset: 'tertiary',
-                // Optional: The auto-hide settings
+                preset: 'success',
                 autohide: true,
                 timeout: 1000
             };
