@@ -11,5 +11,7 @@ export const actions: Actions = {
             console.log('An error occured when saving the Hero data.');
             console.log(error);
         }
+
+        return { success: true};
     }
   };

@@ -5,10 +5,11 @@
 
     const userModel = $page.data.userModel;
 </script>
+<div class="page-wrapper">
 {#if !userModel}
 <p>The user does not exist. Either they never existed, or they existed at some point and then ceased to exist.</p>
 {:else}
-<div class="comic-border max-w-5xl m-auto bg-surface-200">
+<div class="comic-border grow max-w-5xl m-auto bg-surface-200">
     {#if !userModel?.userName && $page.data.session?.user.id == $page.params.id}
         <p class="p-8">Please create your user profile by clicking the Edit button below.</p>
     {:else if !userModel?.userName}
@@ -40,7 +41,7 @@
 </div>
 
 {#if $page.data.session?.user.id == $page.params.id}
-<div class="flex gap-2 px-8 pb-4 justify-center">
+<div class="flex gap-2 px-8 pt-4 justify-center">
     <a href="/user/{$page.params.id}/edit" class="unstyled">
         <ComicButton text="Edit Profile" icon="mdi:edit"></ComicButton>
     </a>
@@ -48,3 +49,4 @@
 </div>
 {/if}
 {/if}
+</div>

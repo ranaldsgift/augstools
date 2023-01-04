@@ -14,11 +14,14 @@
     <Crumb href='/'>
         <span>Home</span>
     </Crumb>
+    <Crumb href='/homebrew'>
+        <span>Homebrew</span>
+    </Crumb>
     <Crumb href='/homebrew/heroes'>
         <span>Heroes</span>
     </Crumb>
     <Crumb href='/homebrew/heroes/{hero.id}'>{hero.name}</Crumb>
-    <Crumb>Editor</Crumb>
+    <Crumb>Edit</Crumb>
 </Breadcrumb>
 
 {#if $page.data.session}

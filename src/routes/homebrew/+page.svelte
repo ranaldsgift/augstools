@@ -22,7 +22,7 @@
 		<span>Home</span>
 	</Crumb>
 	<Crumb>
-		<span>Homebrews</span>
+		<span>Homebrew</span>
 	</Crumb>
 </Breadcrumb>
 

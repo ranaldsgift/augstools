@@ -2,7 +2,7 @@
     import { enhance } from "$app/forms";
     import PositionedContainer from "./PositionedContainer.svelte";
     import PositionedTextEditor from "./PositionedItemEditor.svelte";
-    import { modalStore, RadioGroup, RadioItem, tooltip, type ModalComponent, type ModalSettings } from '@skeletonlabs/skeleton';
+    import { modalStore, RadioGroup, RadioItem, Toast, tooltip, type ModalComponent, type ModalSettings, type ToastSettings } from '@skeletonlabs/skeleton';
     import HeroActionDiceForm from "./ActionDiceForm.svelte";
     import ActionDiceIcon from "./ActionDiceIcon.svelte";
     import { DiceIconsEnum } from "$lib/enums/Enums";
@@ -18,6 +18,7 @@
     import PigeonPeteSays from "./PigeonPeteSays.svelte";
     import PositionedItem from "./PositionedItem.svelte";
     import HeroSheet from "./HeroSheet.svelte";
+    import { toastStore } from '@skeletonlabs/skeleton';
 
     export let template = ThemeTemplates.TMNT.heroSheet;
     export let heroObject: any;
@@ -144,6 +145,22 @@
         };
         modalStore.trigger(d);
     }
+
+    async function handleSave(save) {
+            
+            hero = hero;
+            await save();
+            const t: ToastSettings = {
+                message: 'Saved',
+                // Optional: Presets for primary | secondary | tertiary | warning
+                preset: 'tertiary',
+                // Optional: The auto-hide settings
+                autohide: true,
+                timeout: 1000
+            };
+            toastStore.trigger(t);
+
+    }
 </script>
 
 <style>
@@ -186,8 +203,7 @@
 <form method="POST" action="/api/heroes?/save" class="m-auto grid gap-5" 
     use:enhance={() => {
         return async ({update}) => {
-            
-            var obj = await update();
+            handleSave(update)
         }
     }}
 >
@@ -294,3 +310,4 @@
         </div>
     </div>
 </form>
+<Toast/>

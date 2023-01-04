@@ -52,12 +52,14 @@
 </script>
 
 <style>
+    .table-container {
+        overflow-x: visible;
+    }
     .table-container table {
         border: 4px solid black;
         background-color: rgb(var(--color-surface-200) / 1);
     }
     .table-container tbody tr {
-        box-shadow: inset 0 -3px 2px -2px #000000;
         border: 1px solid black;
         background-color: rgb(var(--color-surface-200) / 1);
     }
@@ -102,7 +104,7 @@
         <span>Home</span>
     </Crumb>
     <Crumb href='/homebrew'>
-        <span>Homebrews</span>
+        <span>Homebrew</span>
     </Crumb>
     <Crumb>
         <span>Heroes</span>
@@ -119,14 +121,26 @@
         </header>
     </div>
 
-        <div class="table-container grid gap-5">
-            <input bind:this={searchInput} bind:value={$dataTableStore.search} on:input={handleSearch} type="search" placeholder="Search..." />
+        <div class="table-container grid gap-2">
+            <div class="comic-label">
+                <h1>Search</h1>
+                <input bind:this={searchInput} bind:value={$dataTableStore.search} on:input={handleSearch} type="search" placeholder="Search..." />
+            </div>
+            
+    
+            {#if $page.data.session}
+            <div class="flex justify-end mr-3">
+                <a href={$page.url + "/create"} class="unstyled">
+                    <ComicButton icon="mdi:edit" text="New Hero"></ComicButton>
+                </a>
+            </div>
+            {/if}
             <table class="table table-hover" use:tableInteraction>
                 <thead on:click={(e) => { dataTableStore.sort(e); handleSort(); }} on:keypress>
                     <tr>
                         <th></th>
                         <th data-sort="name">Hero name</th>
-                        <th data-sort="username">Author</th>
+                        <th data-sort="username">Designer</th>
                         <th data-sort="dateModified">Updated</th>
                         <th colspan="6" align="center">Action Dice</th>
                     </tr>
@@ -156,13 +170,5 @@
                 </tbody>
             </table>
         </div>
-    {/if}
-    
-    {#if $page.data.session}
-    <div class="flex justify-center">
-        <a href={$page.url + "/create"} class="unstyled">
-            <ComicButton icon="mdi:edit" text="Create"></ComicButton>
-        </a>
-    </div>
     {/if}
 </div>
