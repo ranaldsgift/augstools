@@ -21,7 +21,7 @@ export class TokensRepository extends HomebrewsBaseRepository<TokenModel, TokenE
         throw new Error("Method not implemented.");
     }
 
-    public save(formData: FormData): Promise<TokenModel> {
+    public save(model: TokenModel): Promise<TokenModel> {
         throw new Error("Method not implemented.");
     }
     

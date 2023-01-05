@@ -17,9 +17,8 @@ export class UserRepository extends Repository<UserModel, UserEntity, UserEntity
         return this.mapper.entityToModel(data);
     }
 
-    public async save(formData: FormData): Promise<UserModel> {
-        var entity = this.mapper.modelToEntity(this.mapper.objectToModel(Object.fromEntries(formData)));
-
+    public async save(model: UserModel): Promise<UserModel> {
+        var entity = this.mapper.modelToEntity(model);
         entity.date_modified = new Date().toISOString();
         
         const { data, error } = await this.supabaseClient.from("user_profiles").upsert(entity).select().order('id').limit(1).single();

@@ -15,6 +15,7 @@
 
     export let template = ThemeTemplates.TMNT.heroSheet;
     export let hero: HeroModel;
+    export let scale: number = 1.0
 
     if (hero.theme) {
         template = ThemeTemplates[hero.theme].heroSheet;
@@ -138,16 +139,22 @@
         };
         modalStore.trigger(d);
     }
+
+    function getAbilityNameFontSize() {
+        var fontSize = hero.abilityNameFontSize && hero.abilityNameFontSize > 0 ? hero.abilityNameFontSize * scale : template.ability_name.font_size * scale;
+        return `${fontSize}px`;
+    }
 </script>
 
 <style>
     .hero-sheet-container {
         background-repeat: no-repeat;
-        width: 700px;
-        height: 566px;
+        width: calc(700px * var(--scale));
+        height: calc(566px * var(--scale));
         box-shadow: black 0 0 3px 1px;
         border-radius: 5px;
         position: relative;
+        background-size: contain;
     }
     :global(.positioned-container:hover .add-ability-button) {
         display: flex;
@@ -250,9 +257,9 @@
     }
 </style>
 
-<div class="hero-sheet-container" data-theme={template.template_name} style:background-image="url('{template.background_image}')" style:background-color={hero.sheetBackgroundColor}>
+<div class="hero-sheet-container" style:--scale={scale} data-theme={template.template_name} style:background-image="url('{template.background_image}')" style:background-color={hero.sheetBackgroundColor}>
     {#if template.overlay_image}
-    <div class="hero-overlay-image" style:background-image="url('{template.overlay_image}')"></div>
+    <div class="hero-overlay-image" style:background-image="url('{template.overlay_image}')" style:background-size="contain"></div>
     {/if}
     <PositionedImageEditor name="iconImage" title="Icon Image URL" bind:template={template.icon} bind:imageUrl={hero.iconImage}>
     </PositionedImageEditor>
@@ -280,23 +287,23 @@
     </div>
     <PositionedContainer className="ability-container" template={template.ability_container}>
         {#if hero.abilityNames && hero.abilityEffects}
-        <input type="hidden" name="abilityNames" hidden bind:value={hero.abilityNames}>
-        <input type="hidden" name="abilityEffects" hidden bind:value={hero.abilityEffects}>
             {#each hero.abilityNames as name, index}
+            <input type="hidden" name="abilityNames" hidden bind:value={name}>
+            <input type="hidden" name="abilityEffects" hidden bind:value={hero.abilityEffects[index]}>
                 <button style:position="relative" on:click|preventDefault={() => handleEditAbility(index) }>
                     <p
                         class="hero-ability-name text-center pb-1" 
                         style:font-family={template.ability_name.font}
-                        style:font-size="{hero.abilityNameFontSize && hero.abilityNameFontSize > 0 ? hero.abilityNameFontSize : template.ability_name.font_size}px"
-                        style:line-height="{hero.abilityNameFontSize && hero.abilityNameFontSize > 0 ? hero.abilityNameFontSize : template.ability_name.font_size}px"
+                        style:font-size="{hero.abilityNameFontSize && hero.abilityNameFontSize > 0 ? hero.abilityNameFontSize * scale : template.ability_name.font_size * scale}px"
+                        style:line-height="{hero.abilityNameFontSize && hero.abilityNameFontSize > 0 ? hero.abilityNameFontSize * scale : template.ability_name.font_size * scale}px"
                         style:color={template.ability_name.font_color}
                     >{name}</p>
                     <p 
                         style:white-space="pre-wrap"
                         class="hero-ability-effect pb-4 text-center" 
                         style:font-family={template.ability_effect.font}
-                        style:font-size="{hero.abilityEffectFontSize && hero.abilityEffectFontSize > 0 ? hero.abilityEffectFontSize : template.ability_effect.font_size}px"
-                        style:line-height="{hero.abilityEffectFontSize && hero.abilityEffectFontSize > 0 ? hero.abilityEffectFontSize : template.ability_effect.font_size + 2}px"
+                        style:font-size="{hero.abilityEffectFontSize && hero.abilityEffectFontSize > 0 ? hero.abilityEffectFontSize * scale : template.ability_effect.font_size * scale}px"
+                        style:line-height="{hero.abilityEffectFontSize && hero.abilityEffectFontSize > 0 ? hero.abilityEffectFontSize * scale : template.ability_effect.font_size * scale + 2}px"
                         style:color={template.ability_effect.font_color}
                     >{hero.abilityEffects[index]}</p>
                     <iconify-icon icon="mdi:edit" class="hover" hidden></iconify-icon>
@@ -306,15 +313,15 @@
             <p 
                 class="hero-ability-name text-center pb-1" 
                 style:font-family={template.ability_name.font}
-                style:font-size="{hero.abilityNameFontSize && hero.abilityNameFontSize > 0 ? hero.abilityNameFontSize : template.ability_name.font_size}px"
-                style:line-height="{hero.abilityNameFontSize && hero.abilityNameFontSize > 0 ? hero.abilityNameFontSize : template.ability_name.font_size}px"
+                style:font-size="{hero.abilityNameFontSize && hero.abilityNameFontSize > 0 ? hero.abilityNameFontSize * scale : template.ability_name.font_size * scale}px"
+                style:line-height="{hero.abilityNameFontSize && hero.abilityNameFontSize > 0 ? hero.abilityNameFontSize * scale : template.ability_name.font_size * scale}px"
                 style:color={template.ability_name.font_color}
             >Hero Ability Name</p>
             <p 
                 class="hero-ability-effect pb-4 text-center" 
                 style:font-family={template.ability_effect.font}
-                style:font-size="{hero.abilityEffectFontSize && hero.abilityEffectFontSize > 0 ? hero.abilityEffectFontSize : template.ability_effect.font_size}px"
-                style:line-height="{hero.abilityEffectFontSize && hero.abilityEffectFontSize > 0 ? hero.abilityEffectFontSize : template.ability_effect.font_size}px"
+                style:font-size="{hero.abilityEffectFontSize && hero.abilityEffectFontSize > 0 ? hero.abilityEffectFontSize * scale : template.ability_effect.font_size * scale}px"
+                style:line-height="{hero.abilityEffectFontSize && hero.abilityEffectFontSize > 0 ? hero.abilityEffectFontSize * scale : template.ability_effect.font_size * scale}px"
                 style:color={template.ability_effect.font_color}
             >Hero Ability Effect</p>
         {/if}
@@ -326,6 +333,7 @@
         <input type="hidden" name="actionDice" hidden bind:value={hero.actionDice}>
         {#if hero.actionDice}
             {#each hero.actionDice as action_die, index}
+            <input type="hidden" name="dice" hidden bind:value={action_die}>
             <PositionedContainer template={template.action_dice[index]}>
                 <button 
                     style:width={'100%'} 

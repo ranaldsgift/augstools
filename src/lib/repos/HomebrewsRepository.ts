@@ -15,12 +15,23 @@ export class HomebrewsRepository extends Repository<HomebrewModel, HomebrewEntit
         throw new Error("Method not implemented.");
     }
 
-    public async save(formData: FormData): Promise<HomebrewModel> {
-        var entity = this.mapper.modelToEntity(this.mapper.objectToModel(Object.fromEntries(formData)));
-
+    public async saveModel(model: HomebrewModel): Promise<HomebrewModel> {
+        var entity = this.mapper.modelToEntity(model);
         entity.date_modified = new Date().toISOString();
 
-        console.log(entity);
+        const { data, error } = await this.supabaseClient.from('homebrews').upsert(entity).select().order('id').limit(1).single();
+
+        if (error) {
+            console.log(error);
+            throw new Error(`Unable to update item. ${error.message}`);
+        }
+
+        return this.mapper.entityToModel(data);
+    }
+
+    public async save(model: HomebrewModel): Promise<HomebrewModel> {
+        var entity = this.mapper.modelToEntity(model);
+        entity.date_modified = new Date().toISOString();
 
         const { data, error } = await this.supabaseClient.from('homebrews').upsert(entity).select().order('id').limit(1).single();
 

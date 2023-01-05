@@ -2,12 +2,19 @@
     import { page } from '$app/stores'
     import { enhance } from '$app/forms'
     import ComicButton from '$lib/components/ComicButton.svelte';
+    import { ToastHelper } from '$lib/helpers/ToastHelper';
 
     const userModel = $page.data.userModel;
 </script>
 
 {#if userModel && userModel.id == $page.data.session?.user.id}
-<form method="POST" use:enhance class="comic-form max-w-2xl m-auto grid gap-4" >
+<form method="POST" action="/api/users?/save" class="comic-form max-w-2xl m-auto grid gap-4"
+use:enhance={() => {
+    return async ({update}) => {
+        ToastHelper.create('Saved');
+        await update( { reset: false });
+    }
+}}>
     <div>
         <header>
             <h1>Edit your User Profile</h1>

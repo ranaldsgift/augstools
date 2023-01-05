@@ -8,10 +8,10 @@
 <style>
     .positioned-container {
         position: absolute;
-        left: var(--left);
-        top: var(--top);
-        width: var(--width);
-        height: var(--height);
+        left: calc(var(--left) * var(--scale));
+        top: calc(var(--top) * var(--scale));
+        width: calc(var(--width) * var(--scale));
+        height: calc(var(--height) * var(--scale));
         display: flex;
         flex-direction: column;
         overflow: hidden;

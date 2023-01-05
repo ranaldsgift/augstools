@@ -1,5 +1,4 @@
 import { HomebrewCategoriesEnum } from "$lib/enums/Enums";
-import { HomebrewFactory } from "$lib/factories/HomebrewFactory";
 import type { HeroEntity, HeroEntityView, HeroModel } from "$lib/interfaces/HeroModel";
 import type { HeroesMapper } from "$lib/mappers/HeroesMapper";
 import type { TypedSupabaseClient } from "@supabase/auth-helpers-sveltekit/dist/types";
@@ -42,27 +41,25 @@ export class HeroesRepository extends HomebrewsBaseRepository<HeroModel, HeroEnt
         return this.mapper.entityToModel(data);
     }
 
-    public async save(formData: FormData): Promise<HeroModel> {
-        var heroModel = this.mapper.objectToModel(Object.fromEntries(formData));
-
-        if (!heroModel.isValid()) {
+    public async save(model: HeroModel): Promise<HeroModel> {
+        if (!model.isValid()) {
             throw new Error("Hero data format is invalid.");
         }
 
-        var homebrew = await this.homebrewsRepository.save(formData);
+        var homebrew = await this.homebrewsRepository.saveModel(model);
 
         if (!homebrew.id) {
             throw new Error("Unable to save Homebrew data.")
         }
 
-        if (!heroModel.id || heroModel.id !== homebrew.id) {
+        if (!model.id || model.id !== homebrew.id) {
             var id = parseInt(homebrew.id.toString());
             if (!isNaN(id)) {
-                heroModel.id = id;    
+                model.id = id;    
             }
         }
 
-        var hero = this.mapper.modelToEntity(heroModel);
+        var hero = this.mapper.modelToEntity(model);
 
         const { error } = await this.supabaseClient.from('heroes').upsert(hero).select().order('id').limit(1).single();
 

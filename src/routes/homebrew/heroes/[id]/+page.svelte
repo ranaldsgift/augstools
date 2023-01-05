@@ -32,7 +32,7 @@
         pointer-events: none;
     }
     .hero-page {
-        max-width: 1500px;
+        max-width: 1566px;
     }
 </style>
 

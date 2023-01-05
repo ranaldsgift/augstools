@@ -13,6 +13,7 @@ declare namespace App {
 		homebrewsRepository: import('$lib/repos/HomebrewsRepository').HomebrewsRepository
 		heroesRepository: import('$lib/repos/HeroesRepository').HeroesRepository
     	session: import('@supabase/supabase-js').Session | null
+		authUser: import('$lib/interfaces/UserModel').UserModel | null
 	}
 	interface PageData {
     	session: import('@supabase/supabase-js').Session | null

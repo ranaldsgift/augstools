@@ -10,7 +10,7 @@ export interface IBaseRepository {
         match?: Record<string, unknown>
     }): Promise<BaseModel[]>
     findById(id: string | number): Promise<BaseModel>
-    save(formData: FormData): Promise<BaseModel>
+    save(model: BaseModel): Promise<BaseModel>
     delete(id: string | number): void
 }
 
@@ -21,7 +21,7 @@ export interface IRepository<TModel extends BaseModel, TEntity> extends IBaseRep
         match?: Record<string, unknown>
     }): Promise<TModel[]>
     findById(id: string | number): Promise<TModel>
-    save(formData: FormData): Promise<TModel>
+    save(model: TModel): Promise<TModel>
     delete(id: string | number): void
 }
 
@@ -37,7 +37,7 @@ export abstract class Repository<TModel extends BaseModel, TEntity, TEntityView>
     
     public abstract getAll(options?: { limit: number; match?: Record<string, unknown> | undefined }): Promise<TModel[]>;
     public abstract findById(id: string | number): Promise<TModel>;
-    public abstract save(formData: FormData): Promise<TModel>;
+    public abstract save(model: TModel): Promise<TModel>;
     public abstract delete(id: string | number): void;
     
     public static getType(): string {

@@ -12,10 +12,10 @@
 <style>
     .positioned-text {
         position: absolute;
-        left: var(--left);
-        top: var(--top);
-        width: var(--width);
-        height: var(--height);
+        left: calc(var(--left) * var(--scale));
+        top: calc(var(--top) * var(--scale));
+        width: calc(var(--width) * var(--scale));
+        height: calc(var(--height) * var(--scale));
         font-family: var(--font);
         font-size: var(--fontSize);
         color: var(--fontColor);

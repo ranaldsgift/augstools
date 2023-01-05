@@ -35,6 +35,9 @@
             pagination: { offset: 0, limit: 10, size: 0, amounts: [1, 2, 5, 10] }
         }
     );
+    
+    $dataTableStore.sort = 'dateModified';
+    $dataTableStore.sortState = { asc: false, lastKey: 'dateModified' }
 
     // This automatically handles search, sort, etc when the model updates.
     dataTableStore.subscribe((model) => dataTableHandler(model));

@@ -7,7 +7,7 @@
     import { invalidate } from '$app/navigation'
     import { supabaseClient } from '$lib/db'
     import { page } from '$app/stores';
-    import { AppShell, AppBar, Divider, Modal } from '@skeletonlabs/skeleton';
+    import { AppShell, AppBar, Divider, Modal, Toast } from '@skeletonlabs/skeleton';
     import { menu } from '@skeletonlabs/skeleton';
     import { Drawer } from '@skeletonlabs/skeleton';
     import { drawerStore } from '@skeletonlabs/skeleton';
@@ -104,3 +104,6 @@
     <!-- Page Content Slot -->
     <slot />
 </AppShell>
+
+
+<Toast/>

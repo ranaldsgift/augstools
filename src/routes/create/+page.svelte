@@ -30,14 +30,4 @@
 	</Crumb>
 </Breadcrumb>
 
-{#if $page.data.session && $page.data.authUser?.userName}
 <NavList listItems={navItems}></NavList>
-{:else if $page.data.session}
-<p>Please <a href="/user/{$page.data.session.user.id}/edit">edit your profile</a> before creating homebrew content.</p>
-{:else}
-<div class="flex justify-center">
-    <PigeonPeteSays>
-        <p>Please login to create homebrew content.</p>
-    </PigeonPeteSays>
-</div>
-{/if}

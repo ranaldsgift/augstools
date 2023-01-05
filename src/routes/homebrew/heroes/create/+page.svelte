@@ -15,24 +15,16 @@
     <Crumb href='/'>
         <span>Home</span>
     </Crumb>
-    <Crumb href='/homebrew/create'>
+    <Crumb href='/create'>
         <span>Create</span>
     </Crumb>
     <Crumb>Heroes</Crumb>
 </Breadcrumb>
 
-{#if $page.data.session && $page.data.authUser?.userName}
-
-    {#if !hero}
-        <p>There is no data available for this Homebrew.</p>
-    {:else}
-        <HeroEditor heroObject={hero}></HeroEditor>
-    {/if}
-
-{:else}
-<div class="flex justify-center">
+{#if !hero}
     <PigeonPeteSays>
-        <p>Please login to create homebrew content.</p>
+        <p>An error occurred!</p>
     </PigeonPeteSays>
-</div>
+{:else}
+    <HeroEditor heroObject={hero}></HeroEditor>
 {/if}

@@ -182,7 +182,7 @@
         flex: 1;
     }
     form {
-        max-width: 1500px;  
+        max-width: 1566px;  
 		grid-template-columns: repeat(auto-fit, minmax(700px, 1fr));
         gap: 30px;
     }
@@ -197,7 +197,7 @@
     }
 </style>
 
-<form method="POST" action="/api/heroes?/save" class="m-auto grid gap-5" 
+<form method="POST" action="/api/heroes?/save" class="m-auto grid gap-5"
     use:enhance={() => {
         return async ({update}) => {
             handleSave();
@@ -207,7 +207,6 @@
 >
     <HomebrewFields homebrew={hero}></HomebrewFields>
     <input name="tokenId" type="hidden" bind:value={hero.tokenId}>
-    <input name="theme" type="hidden" bind:value={hero.theme}>
     <div class="grid gap-5">
         <HeroSheet bind:hero={hero} bind:template={template}></HeroSheet>
     </div>
@@ -308,4 +307,3 @@
         </div>
     </div>
 </form>
-<Toast/>
